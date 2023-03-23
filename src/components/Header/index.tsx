@@ -1,4 +1,4 @@
-import LinkNav from '../common/LinkNav';
+import LinkNav from '../common/LinkNav/LinkNav';
 import { linksData } from '../../seeds/links_data';
 import { LinkNavProps } from '../../entities/NavLink';
 import './index.scss';
