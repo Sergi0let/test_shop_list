@@ -3,23 +3,15 @@ import RattingRange from '../RattingRang';
 import './index.scss';
 
 function ItemPage(props: ItemType): JSX.Element {
-  const {
-    category,
-    image,
-    title,
-    isBestseller,
-    stoke,
-    price,
-    rating,
-    description,
-  } = props;
-  console.log('typeof ratting', typeof rating);
+  const { category, thumbnail, title, stock, price, rating, description } =
+    props;
+
   return (
-    <article className="item-card">
+    <article className="item-card" style={{ background: '#fff' }}>
       <h1 className="title">{title}</h1>
       <div className="item-card__content">
         <figure>
-          <img src={image} alt={title} title={title} />
+          <img src={thumbnail} alt={title} title={title} />
           <figcaption>{category}</figcaption>
         </figure>
         <div className="item-card__description description">
@@ -28,27 +20,23 @@ function ItemPage(props: ItemType): JSX.Element {
             <RattingRange rating={rating} />
           </div>
 
-          <p className="description__text">
+          <div className="description__text">
             <p>
               <strong>Опис:</strong>
             </p>
             <p>{description}</p>
-          </p>
+          </div>
           <p className="description__price">
             <span>Ціна</span>
             <span> {price}₴</span>
           </p>
           <p className="description__stroke">
             <span>Залишок</span>
-            <span>{stoke}</span>
+            <span>{stock}</span>
           </p>
         </div>
       </div>
-      {isBestseller && (
-        <div className="card-best-seller">
-          <span>ТОП ПРОДАЖІВ</span>
-        </div>
-      )}
+
       <div className="card-btn-seller ">
         <button className="btn">Add to cart</button>
       </div>

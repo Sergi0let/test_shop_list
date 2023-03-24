@@ -1,14 +1,15 @@
 export type ItemType = {
-  thumbnail: string;
-  id?: number;
+  brand?: string;
   category: string;
-  rating: number;
-  stoke?: number;
-  isBestseller: boolean;
-  title: string;
-  image: string;
-  price: number;
   description: string;
+  discountPercentage?: number;
+  id?: number;
+  images?: string[];
+  price: number;
+  rating: number;
+  stock: number;
+  thumbnail: string;
+  title: string;
 };
 
 export type ItemsResponseType = {
@@ -24,4 +25,10 @@ export type ItemsResponseType = {
   stock: number;
   thumbnail: string;
   title: string;
+};
+
+export type ItemsStateType = {
+  isLoading: boolean;
+  itemList: ItemsResponseType[] | [];
+  item: ItemsResponseType | {};
 };

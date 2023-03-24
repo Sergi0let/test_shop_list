@@ -5,21 +5,19 @@ import './index.scss';
 
 type ItemCardProps = {
   category: ItemType['category'];
-  image: ItemType['image'];
   title: ItemType['title'];
-  isBestseller?: boolean;
+  thumbnail: ItemType['thumbnail'];
   price: ItemType['price'];
   rating: ItemType['rating'];
   description: ItemType['description'];
 };
 
 function ItemCard(props: ItemCardProps): JSX.Element {
-  const { category, image, title, isBestseller, price, rating, description } =
-    props;
+  const { category, thumbnail, title, price, rating, description } = props;
   return (
     <article className="card">
       <picture className="card-img__wrapper ">
-        <img className="card-img" src={image} alt="" />
+        <img className="card-img" src={thumbnail} alt={description} />
       </picture>
 
       <div className="card-body">
@@ -35,11 +33,6 @@ function ItemCard(props: ItemCardProps): JSX.Element {
           </span>
         </div>
       </div>
-      {isBestseller && (
-        <div className="card-best-seller">
-          <span>ТОП ПРОДАЖІВ</span>
-        </div>
-      )}
     </article>
   );
 }

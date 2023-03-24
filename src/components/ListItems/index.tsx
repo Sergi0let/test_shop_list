@@ -26,11 +26,10 @@ function ListItems(props: PropsType): JSX.Element {
             <Link to={`/item/${item.id}`}>
               <ItemCard
                 title={item.title}
-                image={item.thumbnail}
+                thumbnail={item.thumbnail}
                 category={item.category}
                 price={item.price}
                 rating={item.rating}
-                isBestseller={item.isBestseller}
                 description={item.description}
               />
             </Link>

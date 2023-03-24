@@ -11,7 +11,12 @@ export const instance = axios.create({
 
 export const itemsAPI = {
   async getAllItems() {
-    const response = await instance.get('/products');
+    const response = await instance.get('products');
+    return response.data;
+  },
+  async getItem(id: number) {
+    const response = await instance.get(`products/${id}`);
+
     return response.data;
   },
 };

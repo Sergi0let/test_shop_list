@@ -1,43 +1,43 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { ItemsStateType } from '../entities/Items';
 import { useParams } from 'react-router-dom';
+import { getItem } from '../store/reducer';
+
 import ItemPage from '../components/common/ItemPage';
-import { ItemType } from '../entities/Items';
 
 function Item(props: any): JSX.Element {
-  // const { id } = useParams();
-  // const [itemData, setItemData] = useState<ItemType | null>(null);
-  // console.log('itemData', itemData);
+  const { item, isLoading, getItemData } = props;
+  const { id } = useParams();
 
-  // useEffect(() => {
-  //   const itemData =
-  //     id && props.itemData.find((item: { id: number }) => item.id === +id);
-  //   if (itemData) {
-  //     setItemData(itemData);
-  //   }
-  // }, [id]);
+  useEffect(() => {
+    getItemData(Number(id));
+  }, [getItemData, id]);
 
-  // if (!itemData) return <div>Item not found</div>;
+  if (isLoading) return <div>Loading</div>;
 
   return (
-    <p>Lorem</p>
-    // <ItemPage
-    //   category={itemData.category}
-    //   ratting={itemData.ratting}
-    //   stoke={itemData.stoke}
-    //   image={itemData.image}
-    //   title={itemData.title}
-    //   price={itemData.price}
-    //   description={itemData.description}
-    //   isBestseller={itemData.isBestseller}
-    // />
+    <ItemPage
+      category={item.category}
+      rating={item.rating}
+      stock={item.stoke}
+      thumbnail={item.thumbnail}
+      title={item.title}
+      price={item.price}
+      description={item.description}
+    />
   );
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: Omit<ItemsStateType, 'itemList'>) => {
   return {
-    itemData: state.itemData,
+    item: state.item,
+    isLoading: state.isLoading,
   };
 };
 
-export default connect(null, mapStateToProps)(Item);
+const mapDispatchToProps = {
+  getItemData: getItem,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Item);
