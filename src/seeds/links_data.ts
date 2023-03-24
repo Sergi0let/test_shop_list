@@ -12,3 +12,7 @@ export const linksData: LinkNavProps[] = [
     url: '/about',
   },
 ];
+
+export const headerData = {
+  title: 'My Books',
+};

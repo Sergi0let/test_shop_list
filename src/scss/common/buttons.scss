@@ -18,6 +18,13 @@
     color: #ffffff;
     border: 1px solid #494ce8;
     background-color: #494ce8;
+    transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+    &:hover {
+      background-color: #3a3fb5;
+    }
+    &:active {
+      background-color: #2a2f82;
+    }
   }
 
   // danger btn

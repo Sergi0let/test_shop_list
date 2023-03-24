@@ -1,0 +1,56 @@
+@import '../../../scss/utils/vars.scss';
+.item-card {
+  position: relative;
+  padding: 2em;
+  margin: auto;
+  border-radius: 14px;
+  position: relative;
+  text-align: center;
+  box-shadow: -1px 15px 30px -12px rgba(50, 50, 50, 0.2);
+  height: 100%;
+
+  &__content {
+    display: flex;
+    height: 100%;
+  }
+
+  &__description {
+    max-width: 440px;
+    padding: 0 2em;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  &__ratting {
+    font-size: 24px;
+  }
+  &__text {
+    padding-top: 1em;
+    font-size: 18px;
+    line-height: 1.5;
+    padding-bottom: 1em;
+    flex-grow: 1;
+  }
+  &__price {
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__stroke {
+    color: grey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

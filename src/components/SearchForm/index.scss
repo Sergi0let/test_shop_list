@@ -1,0 +1,20 @@
+@import '../../scss/utils/vars.scss';
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  @media screen and (min-width: $smTableWidth) {
+    flex-direction: row;
+  }
+
+  &__btn {
+    width: 100%;
+    @media screen and (min-width: $smTableWidth) {
+      width: auto;
+    }
+    button {
+      width: 100%;
+    }
+  }
+}

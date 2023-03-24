@@ -1,19 +1,18 @@
-import LinkNav from '../common/LinkNav/LinkNav';
-import { linksData } from '../../seeds/links_data';
-import { LinkNavProps } from '../../entities/NavLink';
-import './index.scss';
+import { Link } from 'react-router-dom';
+import { headerData } from '../../seeds/links_data';
+import NavBar from '../common/NavBar/NavBar';
 
-export default function Header() {
+export default function Header(): JSX.Element {
   return (
-    <header className="header">
-      <p className="navbar-logo">Title</p>
-      <nav>
-        <ul className="navbar-list">
-          {linksData.map((link: LinkNavProps) => (
-            <LinkNav key={link.id} url={link.url} title={link.title} />
-          ))}
-        </ul>
-      </nav>
+    <header className="navbar">
+      <div className="container">
+        <div className="navbar-content">
+          <Link className="navbar-logo" to={'/'}>
+            {headerData.title}
+          </Link>
+          <NavBar />
+        </div>
+      </div>
     </header>
   );
 }
