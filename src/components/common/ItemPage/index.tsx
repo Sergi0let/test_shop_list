@@ -1,37 +1,56 @@
+import { ItemType } from '../../../entities/Items';
+import RattingRange from '../RattingRang';
 import './index.scss';
 
-function ItemPage() {
+function ItemPage(props: ItemType): JSX.Element {
+  const {
+    category,
+    image,
+    title,
+    isBestseller,
+    stoke,
+    price,
+    ratting,
+    description,
+  } = props;
+  console.log('typeof ratting', typeof ratting);
   return (
     <article className="item-card">
-      <h1 className="title">Item Page</h1>
+      <h1 className="title">{title}</h1>
       <div className="item-card__content">
         <figure>
-          <img
-            src="https://content.rozetka.com.ua/goods/images/big_tile/277654765.jpg"
-            alt=""
-            title="Book"
-          />
-          <figcaption>category</figcaption>
+          <img src={image} alt={title} title={title} />
+          <figcaption>{category}</figcaption>
         </figure>
         <div className="item-card__description description">
-          <div className="description__ratting">ratting</div>
+          <div className="description__ratting">
+            <span>Рейтинг ({ratting})</span>
+            <RattingRange ratting={ratting} />
+          </div>
+
           <p className="description__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi rerum
-            qui dolore, enim numquam molestias voluptate? Sint ut, iste quo ab
-            nobis ipsa voluptates hic corrupti qui obcaecati accusamus tempora?
+            <p>
+              <strong>Опис:</strong>
+            </p>
+            <p>{description}</p>
           </p>
           <p className="description__price">
-            <span>Price</span>
-            <span>999~</span>
+            <span>Ціна</span>
+            <span> {price}₴</span>
           </p>
           <p className="description__stroke">
             <span>Залишок</span>
-            <span>12</span>
+            <span>{stoke}</span>
           </p>
-          <div className="description__btn">
-            <button className="btn">Add to cart</button>
-          </div>
         </div>
+      </div>
+      {isBestseller && (
+        <div className="card-best-seller">
+          <span>ТОП ПРОДАЖІВ</span>
+        </div>
+      )}
+      <div className="card-btn-seller ">
+        <button className="btn">Add to cart</button>
       </div>
     </article>
   );

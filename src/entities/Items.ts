@@ -1,8 +1,8 @@
 export type ItemType = {
-  id: number;
+  id?: number;
   category: string;
   ratting: number;
-  stoke: number;
+  stoke?: number;
   isBestseller: boolean;
   title: string;
   image: string;

@@ -1,5 +1,6 @@
 import { createDescription } from '../../../helpers/helpers';
 import { ItemType } from '../../../entities/Items';
+import RattingRange from '../RattingRang';
 import './index.scss';
 
 type ItemCardProps = {
@@ -23,6 +24,7 @@ function ItemCard(props: ItemCardProps): JSX.Element {
 
       <div className="card-body">
         <div className="card-title">{title} </div>
+        <RattingRange ratting={ratting} />
         <div className="card-name">{category}</div>
         <div className="card-description">{createDescription(description)}</div>
         <div className="card-features">

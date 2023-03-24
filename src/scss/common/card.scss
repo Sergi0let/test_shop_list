@@ -96,3 +96,25 @@ $border-radius-size: 14px;
   border-top-left-radius: $border-radius-size;
   border-bottom-right-radius: $border-radius-size;
 }
+.card-btn-seller {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: $primary-color;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-top-right-radius: $border-radius-size;
+  border-bottom-left-radius: $border-radius-size;
+  button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+}
