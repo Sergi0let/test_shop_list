@@ -9,12 +9,12 @@ type ItemCardProps = {
   title: ItemType['title'];
   isBestseller?: boolean;
   price: ItemType['price'];
-  ratting: ItemType['ratting'];
+  rating: ItemType['rating'];
   description: ItemType['description'];
 };
 
 function ItemCard(props: ItemCardProps): JSX.Element {
-  const { category, image, title, isBestseller, price, ratting, description } =
+  const { category, image, title, isBestseller, price, rating, description } =
     props;
   return (
     <article className="card">
@@ -24,14 +24,14 @@ function ItemCard(props: ItemCardProps): JSX.Element {
 
       <div className="card-body">
         <div className="card-title">{title} </div>
-        <RattingRange ratting={ratting} />
+        <RattingRange rating={rating} />
         <div className="card-name">{category}</div>
         <div className="card-description">{createDescription(description)}</div>
         <div className="card-features">
           <span className="card-features__price">{price}₴</span>
           <span className="card-features__ratting">
             <b>рейтинг: </b>
-            {ratting}
+            {rating}
           </span>
         </div>
       </div>

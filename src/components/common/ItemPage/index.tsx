@@ -10,10 +10,10 @@ function ItemPage(props: ItemType): JSX.Element {
     isBestseller,
     stoke,
     price,
-    ratting,
+    rating,
     description,
   } = props;
-  console.log('typeof ratting', typeof ratting);
+  console.log('typeof ratting', typeof rating);
   return (
     <article className="item-card">
       <h1 className="title">{title}</h1>
@@ -24,8 +24,8 @@ function ItemPage(props: ItemType): JSX.Element {
         </figure>
         <div className="item-card__description description">
           <div className="description__ratting">
-            <span>Рейтинг ({ratting})</span>
-            <RattingRange ratting={ratting} />
+            <span>Рейтинг ({rating})</span>
+            <RattingRange rating={rating} />
           </div>
 
           <p className="description__text">

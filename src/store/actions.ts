@@ -1,1 +1,1 @@
-export const actions = 'rex';
+export const hello = 'heollo';

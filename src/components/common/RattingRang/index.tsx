@@ -2,16 +2,16 @@ import { useEffect, useState } from 'react';
 import './index.scss';
 
 type RattingRangeProps = {
-  ratting: number;
+  rating: number;
 };
 
 export default function RattingRange(props: RattingRangeProps): JSX.Element {
-  const { ratting } = props;
+  const { rating } = props;
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    setCount(ratting);
-  }, [ratting]);
+    setCount(rating);
+  }, [rating]);
 
   const stars = Array.from({ length: 5 }, (_, i) => {
     const ratingValue = i + 1;
