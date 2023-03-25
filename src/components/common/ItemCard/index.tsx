@@ -14,7 +14,7 @@ type ItemCardProps = {
   stock: ItemType['stock'];
 };
 
-function ItemCard(props: ItemCardProps): JSX.Element {
+export default function ItemCard(props: ItemCardProps): JSX.Element {
   const { category, thumbnail, title, price, rating, description, id, stock } =
     props;
   return (
@@ -41,5 +41,3 @@ function ItemCard(props: ItemCardProps): JSX.Element {
     </article>
   );
 }
-
-export default ItemCard;

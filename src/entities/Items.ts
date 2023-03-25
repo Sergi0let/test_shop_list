@@ -13,7 +13,7 @@ export type ItemType = {
 };
 
 export type ItemsResponseType = {
-  map(arg0: (item: ItemType) => JSX.Element): import('react').ReactNode;
+  map: (arg0: (item: ItemType) => JSX.Element) => import('react').ReactNode;
   brand: string;
   category: string;
   description: string;
@@ -31,4 +31,14 @@ export type ItemsStateType = {
   isLoading: boolean;
   itemList: ItemsResponseType[] | [];
   item: ItemsResponseType | {};
+  total: number;
+  limit: number;
+  skip: number;
+};
+
+export type StateType = {
+  total: number;
+  skip: number;
+  itemList: ItemsResponseType;
+  isLoading: boolean;
 };

@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { ItemsResponseType, ItemType } from '../../entities/Items';
+import { ItemsResponseType, ItemType, StateType } from '../../entities/Items';
 import { getAllItems, getMoreItems } from '../../store/reducer';
+
 import ItemCard from '../common/ItemCard';
+import ItemCardHeader from '../common/ItemCardHeader';
+import * as selector from '../../store/selectors';
 
 import './index.scss';
 
@@ -25,6 +28,7 @@ function ListItems(props: PropsType): JSX.Element {
 
   return (
     <ul className="list-items">
+      <ItemCardHeader />
       {itemList &&
         itemList.map((item: ItemType) => (
           <li key={item.id} className="list-items__item-card">
@@ -55,10 +59,10 @@ function ListItems(props: PropsType): JSX.Element {
 
 const mapStateToProps = (state: StateType) => {
   return {
-    itemList: state.itemList,
-    isLoading: state.isLoading,
-    skip: state.skip,
-    total: state.total,
+    itemList: selector.itemsList(state),
+    isLoading: selector.isLoading(state),
+    skip: selector.skip(state),
+    total: selector.total(state),
   };
 };
 
@@ -69,12 +73,6 @@ const mapDispatchToProps = {
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListItems);
 
-type StateType = {
-  total: number;
-  skip: number;
-  itemList: ItemsResponseType;
-  isLoading: boolean;
-};
 type PropsType = {
   itemList: ItemsResponseType;
   isLoading: boolean;

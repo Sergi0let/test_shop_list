@@ -1,0 +1,38 @@
+@import '../../scss/utils/vars.scss';
+
+.radio-button-group {
+  display: flex;
+
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  height: 2rem;
+}
+
+.radio-button-group__label {
+  align-items: center;
+  display: inline-flex;
+
+  border-right: 1px solid #d1d5db;
+  padding: 1rem 0.5rem;
+
+  background-color: transparent;
+  color: #ccc;
+
+  cursor: pointer;
+}
+
+.radio-button-group__label:last-child {
+  border-right-color: transparent;
+}
+
+.radio-button-group__label--selected {
+  background-color: #3b82f6;
+  color: #fff;
+  cursor: not-allowed;
+  margin-top: -1px;
+  margin-bottom: -1px;
+}
+
+.radio-button-group__input {
+  display: none;
+}
