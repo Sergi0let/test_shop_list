@@ -34,6 +34,7 @@ export type ItemsStateType = {
   total: number;
   limit: number;
   skip: number;
+  categories: string[] | [];
 };
 
 export type StateType = {
@@ -41,4 +42,5 @@ export type StateType = {
   skip: number;
   itemList: ItemsResponseType;
   isLoading: boolean;
+  categories: string[];
 };

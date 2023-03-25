@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import * as action from '../../../store/reducer';
-import CategoryBtnGroup from '../../CategoryBtnGroup';
+
 import FilterButtons from '../FilterButtons';
 import './index.scss';
 
@@ -20,10 +20,7 @@ function ItemCardHeader(props: PropsType): JSX.Element {
   } = props;
   return (
     <div className="table-header">
-      <div className="table-header__controls-top">
-        <CategoryBtnGroup />
-        <div className="table-header__choose-category">category</div>
-      </div>
+      <div className=""></div>
       <div className="table-header__controls-filter">
         <FilterButtons
           descending={filterByIDDesc}

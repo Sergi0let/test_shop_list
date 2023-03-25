@@ -1,9 +1,18 @@
 import { useState } from 'react';
+import {
+  getAllCategories,
+  getAllItems,
+  getCategories,
+} from '../../store/reducer';
+import { connect } from 'react-redux';
+import { StateType } from '../../entities/Items';
+import * as selector from '../../store/selectors';
+
 import './index.scss';
 
-export default function CategoryBtnGroup() {
-  const [selected, setSelected] = useState(0);
-  console.log('selected', selected);
+function CategoryBtnGroup(props: PropsType): JSX.Element {
+  const { categories, getCategory, getAllItems } = props;
+  const [selected, setSelected] = useState(-1);
 
   const handleClick = (e: React.MouseEvent<HTMLLabelElement>) => {
     const target = e.target as HTMLLabelElement;
@@ -12,52 +21,64 @@ export default function CategoryBtnGroup() {
     if (index) {
       setSelected(Number(index));
     }
+    if (index === '-1') {
+      getAllItems();
+    }
+
+    getCategory(categories[selected - 1]);
   };
 
   const classActive = 'radio-button-group__label--selected';
 
   return (
     <div className="radio-button-group">
-      <label
-        data-index="0"
-        onClick={handleClick}
-        className={`radio-button-group__label ${selected === 0 && classActive}`}
-      >
-        <input type="radio" className="radio-button-group__input" />
-        All
-      </label>
-      <label
-        data-index="2"
-        onClick={handleClick}
-        className={`radio-button-group__label ${selected === 2 && classActive}`}
-      >
-        <input type="radio" className="radio-button-group__input" />
-        Category2
-      </label>
-      <label
-        data-index="3"
-        onClick={handleClick}
-        className={`radio-button-group__label ${selected === 3 && classActive}`}
-      >
-        <input type="radio" className="radio-button-group__input" />
-        Category3
-      </label>
-      <label
-        data-index="4"
-        onClick={handleClick}
-        className={`radio-button-group__label ${selected === 4 && classActive}`}
-      >
-        <input type="radio" className="radio-button-group__input" />
-        Category4
-      </label>
-      <label
-        data-index="5"
-        onClick={handleClick}
-        className={`radio-button-group__label ${selected === 5 && classActive}`}
-      >
-        <input type="radio" className="radio-button-group__input" />
-        Category5
-      </label>
+      <ul className="radio-button-group">
+        <label
+          onClick={handleClick}
+          data-index="-1"
+          className={`radio-button-group__label ${
+            selected === -1 && classActive
+          }`}
+        >
+          <input type="radio" className="radio-button-group__input" />
+          All
+        </label>
+        {categories &&
+          categories.map((category, index) => (
+            <li key={index + 1}>
+              <label
+                data-index={index + 1}
+                onClick={handleClick}
+                className={`radio-button-group__label ${
+                  selected === index + 1 && classActive
+                }`}
+              >
+                <input type="radio" className="radio-button-group__input" />
+                {category}
+              </label>
+            </li>
+          ))}
+      </ul>
     </div>
   );
 }
+const mapStateToProps = (state: StateType) => {
+  return {
+    categories: selector.categories(state),
+  };
+};
+
+const mapDispatchToProps = {
+  getAllCategories: getAllCategories,
+  getCategory: getCategories,
+  getAllItems: getAllItems,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryBtnGroup);
+
+type PropsType = {
+  categories: string[];
+  getAllCategories: () => void;
+  getCategory: (category: string) => void;
+  getAllItems: () => void;
+};

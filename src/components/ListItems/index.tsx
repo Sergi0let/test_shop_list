@@ -2,21 +2,34 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ItemsResponseType, ItemType, StateType } from '../../entities/Items';
-import { getAllItems, getMoreItems } from '../../store/reducer';
+import {
+  getAllCategories,
+  getAllItems,
+  getMoreItems,
+} from '../../store/reducer';
 
 import ItemCard from '../common/ItemCard';
 import ItemCardHeader from '../common/ItemCardHeader';
 import * as selector from '../../store/selectors';
 
 import './index.scss';
+import CategoryBtnGroup from '../CategoryBtnGroup';
 
 function ListItems(props: PropsType): JSX.Element {
-  const { itemList, getAllItems, isLoading, getMoreItemsList, skip, total } =
-    props;
+  const {
+    itemList,
+    getAllItems,
+    isLoading,
+    getMoreItemsList,
+    skip,
+    total,
+    getAllCategories,
+  } = props;
 
   useEffect(() => {
     getAllItems();
-  }, [getAllItems]);
+    getAllCategories();
+  }, [getAllCategories, getAllItems]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -27,33 +40,36 @@ function ListItems(props: PropsType): JSX.Element {
   };
 
   return (
-    <ul className="list-items">
-      <ItemCardHeader />
-      {itemList &&
-        itemList.map((item: ItemType) => (
-          <li key={item.id} className="list-items__item-card">
-            <Link to={`/item/${item.id}`}>
-              <ItemCard
-                stock={item.stock}
-                id={item.id}
-                title={item.title}
-                thumbnail={item.thumbnail}
-                category={item.category}
-                price={item.price}
-                rating={item.rating}
-                description={item.description}
-              />
-            </Link>
-          </li>
-        ))}
-      <div style={{ textAlign: 'center' }}>
-        {total >= skip ? (
-          <button className="btn btnPrimary" onClick={showMore}>
-            Show more
-          </button>
-        ) : null}
-      </div>
-    </ul>
+    <div className="list-items">
+      <CategoryBtnGroup />
+      <ul className="list-items__list">
+        <ItemCardHeader />
+        {itemList &&
+          itemList.map((item: ItemType) => (
+            <li key={item.id} className="list-items__item-card">
+              <Link to={`/item/${item.id}`}>
+                <ItemCard
+                  stock={item.stock}
+                  id={item.id}
+                  title={item.title}
+                  thumbnail={item.thumbnail}
+                  category={item.category}
+                  price={item.price}
+                  rating={item.rating}
+                  description={item.description}
+                />
+              </Link>
+            </li>
+          ))}
+        <div style={{ textAlign: 'center' }}>
+          {total >= skip ? (
+            <button className="btn btnPrimary" onClick={showMore}>
+              Show more
+            </button>
+          ) : null}
+        </div>
+      </ul>
+    </div>
   );
 }
 
@@ -69,6 +85,7 @@ const mapStateToProps = (state: StateType) => {
 const mapDispatchToProps = {
   getAllItems: getAllItems,
   getMoreItemsList: getMoreItems,
+  getAllCategories: getAllCategories,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListItems);
@@ -80,4 +97,5 @@ type PropsType = {
   total: number;
   getAllItems: () => void;
   getMoreItemsList: (skip: number) => void;
+  getAllCategories: () => void;
 };

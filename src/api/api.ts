@@ -24,3 +24,14 @@ export const itemsAPI = {
     return response;
   },
 };
+
+export const categoriesAPI = {
+  async getAllCategories() {
+    const response = await instance.get('products/categories');
+    return response;
+  },
+  async getCategory(category: string) {
+    const response = await instance.get(`products/category/${category}`);
+    return response;
+  },
+};

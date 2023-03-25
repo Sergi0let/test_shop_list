@@ -1,4 +1,4 @@
-import { itemsAPI } from '../api/api';
+import { categoriesAPI, itemsAPI } from '../api/api';
 import { ItemsResponseType, ItemsStateType } from '../entities/Items';
 
 const initialState = {
@@ -8,6 +8,7 @@ const initialState = {
   total: 0,
   skip: 30,
   limit: 30,
+  categories: [] as string[],
 };
 
 const reducer = (state = initialState, action: any) => {
@@ -18,7 +19,6 @@ const reducer = (state = initialState, action: any) => {
         isLoading: true,
       };
     case 'GET_ALL_ITEMS':
-      console.log('action.payload', action.payload);
       return {
         ...state,
         isLoading: false,
@@ -102,22 +102,18 @@ const reducer = (state = initialState, action: any) => {
         itemList: [...action.payload],
       };
 
+    case 'GET_ALL_CATEGORIES':
+      return {
+        ...state,
+        categories: [...action.payload],
+      };
+
     default:
       return state;
   }
 };
 
 export default reducer;
-
-const actions = {
-  requestData: () => ({ type: 'REQUEST_DATA' } as const),
-  receiveData: (payload: ItemsResponseType[]) =>
-    ({ type: 'GET_ALL_ITEMS', payload } as const),
-  receiveItem: (payload: ItemsResponseType) =>
-    ({ type: 'GET_ITEM', payload } as const),
-  receiveMoreItems: (payload: ItemsResponseType[]) =>
-    ({ type: 'GET_MORE_ITEMS', payload } as const),
-};
 
 export const actionsFilter = {
   filterByIDDesc: (payload: ItemsResponseType[]) =>
@@ -257,11 +253,21 @@ export const filterByIDAsc = () => {
   };
 };
 
+const actions = {
+  requestData: () => ({ type: 'REQUEST_DATA' } as const),
+  receiveData: (payload: ItemsResponseType[]) =>
+    ({ type: 'GET_ALL_ITEMS', payload } as const),
+  receiveItem: (payload: ItemsResponseType) =>
+    ({ type: 'GET_ITEM', payload } as const),
+  receiveMoreItems: (payload: ItemsResponseType[]) =>
+    ({ type: 'GET_MORE_ITEMS', payload } as const),
+};
+
 export const getAllItems = () => async (dispatch: any) => {
   dispatch(actions.requestData());
   try {
     const response = await itemsAPI.getAllItems();
-    console.log('response', response);
+
     dispatch(actions.receiveData(response.data));
   } catch (error) {
     console.error(error);
@@ -283,6 +289,29 @@ export const getMoreItems = (skip: number) => async (dispatch: any) => {
   try {
     const response = await itemsAPI.getMoreItems(skip);
     dispatch(actions.receiveMoreItems(response.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const actionsCategories = {
+  receiveCategories: (payload: Pick<ItemsStateType, 'categories'>) =>
+    ({ type: 'GET_ALL_CATEGORIES', payload } as const),
+};
+
+export const getAllCategories = () => async (dispatch: any) => {
+  try {
+    const response = await categoriesAPI.getAllCategories();
+    dispatch(actionsCategories.receiveCategories(response.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getCategories = (categories: string) => async (dispatch: any) => {
+  try {
+    const response = await categoriesAPI.getCategory(categories);
+    dispatch(actions.receiveData(response.data));
   } catch (error) {
     console.error(error);
   }

@@ -1,5 +1,9 @@
 .list-items {
-  width: 100%;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 8fr;
+  &__list {
+    width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
 }
