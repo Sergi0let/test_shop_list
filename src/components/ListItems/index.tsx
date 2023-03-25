@@ -25,6 +25,8 @@ function ListItems(props: PropsType): JSX.Element {
           <li key={item.id} className="list-items__item-card">
             <Link to={`/item/${item.id}`}>
               <ItemCard
+                stock={item.stock}
+                id={item.id}
                 title={item.title}
                 thumbnail={item.thumbnail}
                 category={item.category}
@@ -35,6 +37,9 @@ function ListItems(props: PropsType): JSX.Element {
             </Link>
           </li>
         ))}
+      <div style={{ textAlign: 'center' }}>
+        <button className="btn btnPrimary">Show more</button>
+      </div>
     </ul>
   );
 }

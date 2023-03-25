@@ -10,28 +10,33 @@ type ItemCardProps = {
   price: ItemType['price'];
   rating: ItemType['rating'];
   description: ItemType['description'];
+  id: ItemType['id'];
+  stock: ItemType['stock'];
 };
 
 function ItemCard(props: ItemCardProps): JSX.Element {
-  const { category, thumbnail, title, price, rating, description } = props;
+  const { category, thumbnail, title, price, rating, description, id, stock } =
+    props;
   return (
-    <article className="card">
-      <picture className="card-img__wrapper ">
-        <img className="card-img" src={thumbnail} alt={description} />
+    <article className="table">
+      <div className="table__id">
+        <div>ID</div>
+        <div>{id}</div>
+      </div>
+      <div className="table__title">{title} </div>
+      <div className="table__description">{createDescription(description)}</div>
+      <span className="table__price">{price}₴</span>
+      <picture className="table__img-wrapper">
+        <img className="" src={thumbnail} alt={description} />
       </picture>
 
-      <div className="card-body">
-        <div className="card-title">{title} </div>
+      <div className="">
         <RattingRange rating={rating} />
-        <div className="card-name">{category}</div>
-        <div className="card-description">{createDescription(description)}</div>
-        <div className="card-features">
-          <span className="card-features__price">{price}₴</span>
-          <span className="card-features__ratting">
-            <b>рейтинг: </b>
-            {rating}
-          </span>
-        </div>
+        <div className="">{rating}</div>
+      </div>
+      <div className="table__stock">
+        <div>{stock}</div>
+        <div className="table__category">{category}</div>
       </div>
     </article>
   );

@@ -19,4 +19,8 @@ export const itemsAPI = {
 
     return response.data;
   },
+  async getMoreItems() {
+    const response = await instance.get('products?limit=30&skip=30');
+    return response.data;
+  },
 };
