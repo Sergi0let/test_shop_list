@@ -35,9 +35,11 @@ export type ItemsStateType = {
   limit: number;
   skip: number;
   categories: string[] | [];
+  filter: string;
 };
 
 export type StateType = {
+  filter: string;
   total: number;
   skip: number;
   itemList: ItemsResponseType;

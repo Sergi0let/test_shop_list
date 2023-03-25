@@ -35,3 +35,10 @@ export const categoriesAPI = {
     return response;
   },
 };
+
+export const searchAPI = {
+  async getSearchItems(search: string) {
+    const response = await instance.get(`products/search?q=${search}`);
+    return response;
+  },
+};

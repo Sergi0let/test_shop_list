@@ -1,4 +1,4 @@
-import { categoriesAPI, itemsAPI } from '../api/api';
+import { categoriesAPI, itemsAPI, searchAPI } from '../api/api';
 import { ItemsResponseType, ItemsStateType } from '../entities/Items';
 
 const initialState = {
@@ -9,6 +9,7 @@ const initialState = {
   skip: 30,
   limit: 30,
   categories: [] as string[],
+  filter: '',
 };
 
 const reducer = (state = initialState, action: any) => {
@@ -106,6 +107,19 @@ const reducer = (state = initialState, action: any) => {
       return {
         ...state,
         categories: [...action.payload],
+      };
+
+    case 'SET_FILTER':
+      console.log(action.payload);
+      return {
+        ...state,
+        filter: action.payload,
+      };
+
+    case 'REMOVE_FILTER':
+      return {
+        ...state,
+        filter: '',
       };
 
     default:
@@ -311,6 +325,27 @@ export const getAllCategories = () => async (dispatch: any) => {
 export const getCategories = (categories: string) => async (dispatch: any) => {
   try {
     const response = await categoriesAPI.getCategory(categories);
+    dispatch(actions.receiveData(response.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const actionsSearch = {
+  setFilter: (payload: string) => ({ type: 'SET_FILTER', payload } as const),
+  removeFilter: () => ({ type: 'REMOVE_FILTER' } as const),
+};
+
+export const setFilter = (filter: string) => {
+  return (dispatch: any) => {
+    dispatch(actionsSearch.setFilter(filter));
+  };
+};
+
+export const searchItems = (filter: string) => async (dispatch: any) => {
+  dispatch(actions.requestData());
+  try {
+    const response = await searchAPI.getSearchItems(filter);
     dispatch(actions.receiveData(response.data));
   } catch (error) {
     console.error(error);

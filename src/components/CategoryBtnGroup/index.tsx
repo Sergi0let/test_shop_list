@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   getAllCategories,
   getAllItems,
@@ -29,7 +29,6 @@ function CategoryBtnGroup(props: PropsType): JSX.Element {
   };
 
   const classActive = 'radio-button-group__label--selected';
-
   return (
     <div className="radio-button-group">
       <ul className="radio-button-group">

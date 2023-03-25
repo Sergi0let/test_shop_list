@@ -7,8 +7,12 @@
   @media screen and (min-width: $smTableWidth) {
     flex-direction: row;
   }
+  &__block {
+    width: 100%;
+  }
 
   &__btn {
+    white-space: nowrap;
     width: 100%;
     @media screen and (min-width: $smTableWidth) {
       width: auto;
