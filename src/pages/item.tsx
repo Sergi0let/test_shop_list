@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { ItemsStateType } from '../entities/Items';
 import { useParams } from 'react-router-dom';
-import { getItem } from '../store/reducer';
+import { getItem } from '../store/items/actionsItems';
 import ItemPage from '../components/common/ItemPage';
 
 function Item(props: any): JSX.Element {

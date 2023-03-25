@@ -6,11 +6,11 @@ import {
   getAllCategories,
   getAllItems,
   getMoreItems,
-} from '../../store/reducer';
+} from '../../store/items/actionsItems';
 
 import ItemCard from '../common/ItemCard';
 import ItemCardHeader from '../common/ItemCardHeader';
-import * as selector from '../../store/selectors';
+import * as selector from '../../store/items/selectorsItems';
 
 import './index.scss';
 import CategoryBtnGroup from '../CategoryBtnGroup';
@@ -47,18 +47,16 @@ function ListItems(props: PropsType): JSX.Element {
         {itemList &&
           itemList.map((item: ItemType) => (
             <li key={item.id} className="list-items__item-card">
-              <Link to={`/item/${item.id}`}>
-                <ItemCard
-                  stock={item.stock}
-                  id={item.id}
-                  title={item.title}
-                  thumbnail={item.thumbnail}
-                  category={item.category}
-                  price={item.price}
-                  rating={item.rating}
-                  description={item.description}
-                />
-              </Link>
+              <ItemCard
+                stock={item.stock}
+                id={item.id}
+                title={item.title}
+                thumbnail={item.thumbnail}
+                category={item.category}
+                price={item.price}
+                rating={item.rating}
+                description={item.description}
+              />
             </li>
           ))}
         <div style={{ textAlign: 'center' }}>

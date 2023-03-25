@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   getAllCategories,
   getAllItems,
   getCategories,
-} from '../../store/reducer';
+} from '../../store/items/actionsItems';
 import { connect } from 'react-redux';
 import { StateType } from '../../entities/Items';
-import * as selector from '../../store/selectors';
+import * as selector from '../../store/items/selectorsItems';
 
 import './index.scss';
 

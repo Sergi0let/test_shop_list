@@ -5,7 +5,6 @@ export default function Home() {
   return (
     <div>
       <SearchForm />
-
       <ListItems />
     </div>
   );

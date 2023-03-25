@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import * as action from '../../../store/reducer';
+import * as action from '../../../store/items/actionsItems';
 
 import FilterButtons from '../FilterButtons';
 import './index.scss';

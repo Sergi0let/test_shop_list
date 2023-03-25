@@ -2,6 +2,8 @@ import { createDescription } from '../../../helpers/helpers';
 import { ItemType } from '../../../entities/Items';
 import RattingRange from '../RattingRang';
 import './index.scss';
+import ButtonRemove from '../ButtonRemove';
+import { Link } from 'react-router-dom';
 
 type ItemCardProps = {
   category: ItemType['category'];
@@ -26,9 +28,11 @@ export default function ItemCard(props: ItemCardProps): JSX.Element {
       <div className="table__title">{title} </div>
       <div className="table__description">{createDescription(description)}</div>
       <span className="table__price">{price}₴</span>
-      <picture className="table__img-wrapper">
-        {/* <img className="" src={thumbnail} alt={description} /> */}
-      </picture>
+      <Link to={`/item/${id}`}>
+        <picture className="table__img-wrapper">
+          <img className="" src={thumbnail} alt={description} />
+        </picture>
+      </Link>
 
       <div className="">
         <RattingRange rating={rating} />
@@ -38,6 +42,7 @@ export default function ItemCard(props: ItemCardProps): JSX.Element {
         <div>{stock}</div>
         <div className="table__category">{category}</div>
       </div>
+      <ButtonRemove id={id} />
     </article>
   );
 }

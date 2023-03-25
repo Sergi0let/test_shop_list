@@ -1,4 +1,4 @@
-import { StateType } from '../entities/Items';
+import { StateType } from '../../entities/Items';
 
 export const itemsList = (state: StateType) => state.itemList;
 export const isLoading = (state: StateType) => state.isLoading;

@@ -1,7 +1,11 @@
 import { connect } from 'react-redux';
 import { inputData } from '../../seeds/input_data';
-import { actionsSearch, searchItems, setFilter } from '../../store/reducer';
-import * as selector from '../../store/selectors';
+import {
+  actionsSearch,
+  searchItems,
+  setFilter,
+} from '../../store/items/actionsItems';
+import * as selector from '../../store/items/selectorsItems';
 import './index.scss';
 
 function SearchForm(props: PropsType): JSX.Element {
