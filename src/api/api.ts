@@ -12,15 +12,15 @@ export const instance = axios.create({
 export const itemsAPI = {
   async getAllItems() {
     const response = await instance.get('products');
-    return response.data;
+    return response;
   },
   async getItem(id: number) {
     const response = await instance.get(`products/${id}`);
 
     return response.data;
   },
-  async getMoreItems() {
-    const response = await instance.get('products?limit=30&skip=30');
-    return response.data;
+  async getMoreItems(skip: number) {
+    const response = await instance.get(`products?limit=30&skip=${skip}`);
+    return response;
   },
 };

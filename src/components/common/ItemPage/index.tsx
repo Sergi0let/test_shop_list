@@ -1,8 +1,9 @@
 import { ItemType } from '../../../entities/Items';
 import RattingRange from '../RattingRang';
+
 import './index.scss';
 
-function ItemPage(props: ItemType): JSX.Element {
+export default function ItemPage(props: ItemType): JSX.Element {
   const { category, thumbnail, title, stock, price, rating, description } =
     props;
 
@@ -14,25 +15,33 @@ function ItemPage(props: ItemType): JSX.Element {
           <img src={thumbnail} alt={title} title={title} />
           <figcaption>{category}</figcaption>
         </figure>
+
         <div className="item-card__description description">
           <div className="description__ratting">
-            <span>Рейтинг ({rating})</span>
+            <span>Rating ({rating})</span>
             <RattingRange rating={rating} />
           </div>
 
           <div className="description__text">
             <p>
-              <strong>Опис:</strong>
+              <strong>Description:</strong>
             </p>
             <p>{description}</p>
           </div>
+
           <p className="description__price">
-            <span>Ціна</span>
+            <span>Price</span>
             <span> {price}₴</span>
           </p>
+
           <p className="description__stroke">
-            <span>Залишок</span>
-            <span>{stock}</span>
+            <span>Remainder</span>
+
+            <span>
+              {stock
+                ? stock + ' items'
+                : 'no information, check with the manager'}
+            </span>
           </p>
         </div>
       </div>
@@ -43,5 +52,3 @@ function ItemPage(props: ItemType): JSX.Element {
     </article>
   );
 }
-
-export default ItemPage;

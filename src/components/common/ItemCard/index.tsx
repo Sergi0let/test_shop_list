@@ -27,7 +27,7 @@ function ItemCard(props: ItemCardProps): JSX.Element {
       <div className="table__description">{createDescription(description)}</div>
       <span className="table__price">{price}₴</span>
       <picture className="table__img-wrapper">
-        <img className="" src={thumbnail} alt={description} />
+        {/* <img className="" src={thumbnail} alt={description} /> */}
       </picture>
 
       <div className="">

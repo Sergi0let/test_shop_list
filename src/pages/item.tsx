@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { ItemsStateType } from '../entities/Items';
 import { useParams } from 'react-router-dom';
 import { getItem } from '../store/reducer';
-
 import ItemPage from '../components/common/ItemPage';
 
 function Item(props: any): JSX.Element {
@@ -20,7 +19,7 @@ function Item(props: any): JSX.Element {
     <ItemPage
       category={item.category}
       rating={item.rating}
-      stock={item.stoke}
+      stock={item.stock}
       thumbnail={item.thumbnail}
       title={item.title}
       price={item.price}

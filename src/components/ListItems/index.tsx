@@ -2,13 +2,14 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ItemsResponseType, ItemType } from '../../entities/Items';
-import { getAllItems } from '../../store/reducer';
+import { getAllItems, getMoreItems } from '../../store/reducer';
 import ItemCard from '../common/ItemCard';
 
 import './index.scss';
 
 function ListItems(props: PropsType): JSX.Element {
-  const { itemList, getAllItems, isLoading } = props;
+  const { itemList, getAllItems, isLoading, getMoreItemsList, skip, total } =
+    props;
 
   useEffect(() => {
     getAllItems();
@@ -17,6 +18,10 @@ function ListItems(props: PropsType): JSX.Element {
   if (isLoading) {
     return <div>Loading...</div>;
   }
+
+  const showMore = () => {
+    getMoreItemsList(skip);
+  };
 
   return (
     <ul className="list-items">
@@ -38,7 +43,11 @@ function ListItems(props: PropsType): JSX.Element {
           </li>
         ))}
       <div style={{ textAlign: 'center' }}>
-        <button className="btn btnPrimary">Show more</button>
+        {total >= skip ? (
+          <button className="btn btnPrimary" onClick={showMore}>
+            Show more
+          </button>
+        ) : null}
       </div>
     </ul>
   );
@@ -48,21 +57,29 @@ const mapStateToProps = (state: StateType) => {
   return {
     itemList: state.itemList,
     isLoading: state.isLoading,
+    skip: state.skip,
+    total: state.total,
   };
 };
 
 const mapDispatchToProps = {
   getAllItems: getAllItems,
+  getMoreItemsList: getMoreItems,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListItems);
 
 type StateType = {
+  total: number;
+  skip: number;
   itemList: ItemsResponseType;
   isLoading: boolean;
 };
 type PropsType = {
   itemList: ItemsResponseType;
-  getAllItems: () => void;
   isLoading: boolean;
+  skip: number;
+  total: number;
+  getAllItems: () => void;
+  getMoreItemsList: (skip: number) => void;
 };
