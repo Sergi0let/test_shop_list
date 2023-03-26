@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
-
+import FilterButtons from '../FilterButtons';
 import * as action from '../../../store/items/actionsItems';
 
-import FilterButtons from '../FilterButtons';
 import './index.scss';
 
 function ItemCardHeader(props: PropsType): JSX.Element {
@@ -20,7 +19,6 @@ function ItemCardHeader(props: PropsType): JSX.Element {
   } = props;
   return (
     <div className="table-header">
-      <div className=""></div>
       <div className="table-header__controls-filter">
         <FilterButtons
           descending={filterByIDDesc}
@@ -32,13 +30,13 @@ function ItemCardHeader(props: PropsType): JSX.Element {
           ascending={filterByTitleDesc}
           label="Title"
         />
-        <div className="title">Description</div>
+        <h5 className="title-small">Description</h5>
         <FilterButtons
           descending={filterByPriceDesc}
           ascending={filterByPriceAsc}
           label="Price"
         />
-        <div className="title">Picture</div>
+        <h5 className="title-small">Picture</h5>
         <FilterButtons
           descending={filterByRatingDesc}
           ascending={filterByRatingAsc}

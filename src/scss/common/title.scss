@@ -1,6 +1,13 @@
+@import '../utils/vars.scss';
+
 .title {
   margin-bottom: 20px;
   color: #333333;
   font-size: 30px;
   font-weight: 700;
+}
+.title-small {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: $neutral-primary;
 }

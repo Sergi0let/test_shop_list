@@ -1,39 +1,42 @@
 @import '../../../scss/utils/vars.scss';
 
 .filter-block {
-  &__label {
-    font-weight: 600;
-    font-size: 1.2rem;
-    color: $neutral-primary;
-  }
   &__controls {
-    max-width: 60px;
+    width: 30px;
+    overflow: hidden;
     margin: 0 auto;
   }
+
   &__desc {
-    border-radius: 12px 12px 0 0;
-    background: $primary-color;
-    transition: all 0.3s ease-in-out;
-    &:hover {
-      background: $success-color;
-    }
+    border-radius: 8px 8px 0 0;
   }
   &__asc {
-    border-radius: 0 0 12px 12px;
-    background: $purple-color-100;
-    transition: all 0.3s ease-in-out;
+    border-radius: 0 0 8px 8px;
+  }
 
+  &__desc,
+  &__asc {
+    transition: all 0.3s ease-in-out;
     &:hover {
-      background: $warning-color;
+      background: $primary-color;
+
+      svg {
+        stroke: $g-0;
+      }
     }
   }
+
   button {
-    color: #fff;
+    overflow: hidden;
     width: 100%;
     display: block;
     border: none;
     cursor: pointer;
     outline: none;
-    padding: 8px;
+    background: $border-light;
+  }
+  svg {
+    transition: all 0.3s ease-in-out;
+    stroke: $neutral-regular;
   }
 }
