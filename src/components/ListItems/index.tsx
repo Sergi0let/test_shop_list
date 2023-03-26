@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ItemsResponseType, ItemType, StateType } from '../../entities/Items';
 import {
+  actionsModal,
   getAllCategories,
   getAllItems,
   getMoreItems,
@@ -14,6 +15,7 @@ import * as selector from '../../store/items/selectorsItems';
 
 import './index.scss';
 import CategoryBtnGroup from '../CategoryBtnGroup';
+import FormAddItem from '../FormAddItem';
 
 function ListItems(props: PropsType): JSX.Element {
   const {
@@ -24,6 +26,8 @@ function ListItems(props: PropsType): JSX.Element {
     skip,
     total,
     getAllCategories,
+    isModalOpen,
+    closeModal,
   } = props;
 
   useEffect(() => {
@@ -40,34 +44,41 @@ function ListItems(props: PropsType): JSX.Element {
   };
 
   return (
-    <div className="list-items">
-      <CategoryBtnGroup />
-      <ul className="list-items__list">
-        <ItemCardHeader />
-        {itemList &&
-          itemList.map((item: ItemType) => (
-            <li key={item.id} className="list-items__item-card">
-              <ItemCard
-                stock={item.stock}
-                id={item.id}
-                title={item.title}
-                thumbnail={item.thumbnail}
-                category={item.category}
-                price={item.price}
-                rating={item.rating}
-                description={item.description}
-              />
-            </li>
-          ))}
-        <div style={{ textAlign: 'center' }}>
-          {total >= skip ? (
-            <button className="btn btnPrimary" onClick={showMore}>
-              Show more
-            </button>
-          ) : null}
-        </div>
-      </ul>
-    </div>
+    <>
+      <div
+        className="list-items"
+        style={isModalOpen ? { opacity: '0.4' } : {}}
+        onClick={closeModal}
+      >
+        <CategoryBtnGroup />
+        <ul className="list-items__list">
+          <ItemCardHeader />
+          {itemList &&
+            itemList.map((item: ItemType) => (
+              <li key={item.id} className="list-items__item-card">
+                <ItemCard
+                  stock={item.stock}
+                  id={item.id}
+                  title={item.title}
+                  thumbnail={item.thumbnail}
+                  category={item.category}
+                  price={item.price}
+                  rating={item.rating}
+                  description={item.description}
+                />
+              </li>
+            ))}
+          <div style={{ textAlign: 'center' }}>
+            {total >= skip ? (
+              <button className="btn btnPrimary" onClick={showMore}>
+                Show more
+              </button>
+            ) : null}
+          </div>
+        </ul>
+      </div>
+      {isModalOpen && <FormAddItem />}
+    </>
   );
 }
 
@@ -77,6 +88,7 @@ const mapStateToProps = (state: StateType) => {
     isLoading: selector.isLoading(state),
     skip: selector.skip(state),
     total: selector.total(state),
+    isModalOpen: selector.isModalOpen(state),
   };
 };
 
@@ -84,6 +96,7 @@ const mapDispatchToProps = {
   getAllItems: getAllItems,
   getMoreItemsList: getMoreItems,
   getAllCategories: getAllCategories,
+  closeModal: actionsModal.closeModal,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListItems);
@@ -93,7 +106,9 @@ type PropsType = {
   isLoading: boolean;
   skip: number;
   total: number;
+  isModalOpen: boolean;
   getAllItems: () => void;
   getMoreItemsList: (skip: number) => void;
   getAllCategories: () => void;
+  closeModal: () => void;
 };

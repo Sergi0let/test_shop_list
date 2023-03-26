@@ -23,6 +23,10 @@ export const itemsAPI = {
     const response = await instance.get(`products?limit=30&skip=${skip}`);
     return response;
   },
+  async removeItem(id: number) {
+    const response = await instance.delete(`products/${id}`);
+    return response;
+  },
 };
 
 export const categoriesAPI = {

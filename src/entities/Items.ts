@@ -48,4 +48,5 @@ export type StateType = {
   itemList: ItemsResponseType;
   isLoading: boolean;
   categories: string[];
+  isModalVisible: boolean;
 };

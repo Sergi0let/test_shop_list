@@ -1,0 +1,78 @@
+.formItem {
+  width: 100%;
+  margin: 0 auto;
+  position: fixed;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  * > div {
+    margin-bottom: 18px;
+  }
+  h1 {
+    text-align: center;
+  }
+  input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    margin-bottom: 10px;
+  }
+
+  button {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ccc;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 6px;
+    &:hover {
+      background-color: #f7b500;
+    }
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    &:active {
+      background-color: blue;
+    }
+  }
+  label {
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 50%;
+  }
+}
+
+.rating-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+
+  select {
+    width: 100px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  select:checked + label {
+    color: #f7b500;
+  }
+}

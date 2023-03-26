@@ -9,6 +9,7 @@ const initialState = {
   limit: 30,
   categories: [] as string[],
   filter: '',
+  isModalVisible: false,
 };
 
 const reducer = (state = initialState, action: any) => {
@@ -126,6 +127,18 @@ const reducer = (state = initialState, action: any) => {
       return {
         ...state,
         itemList: state.itemList.filter((item) => item._id !== action.payload),
+      };
+
+    case 'OPEN_MODAL':
+      return {
+        ...state,
+        isModalVisible: true,
+      };
+
+    case 'CLOSE_MODAL':
+      return {
+        ...state,
+        isModalVisible: false,
       };
 
     default:

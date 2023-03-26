@@ -153,6 +153,16 @@ const actions = {
     ({ type: 'GET_ITEM', payload } as const),
   receiveMoreItems: (payload: ItemsResponseType[]) =>
     ({ type: 'GET_MORE_ITEMS', payload } as const),
+  removeItem: (payload: number) => ({ type: 'REMOVE_ITEM', payload } as const),
+};
+
+export const removeItem = (id: number) => async (dispatch: Dispatch) => {
+  try {
+    await itemsAPI.removeItem(id);
+    dispatch(actions.removeItem(id));
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getAllItems = () => async (dispatch: Dispatch) => {
@@ -231,6 +241,7 @@ export const searchItems = (filter: string) => async (dispatch: Dispatch) => {
   }
 };
 
-export const actionsRemove = {
-  removeItem: (payload: number) => ({ type: 'REMOVE_ITEM', payload } as const),
+export const actionsModal = {
+  openModal: () => ({ type: 'OPEN_MODAL' } as const),
+  closeModal: () => ({ type: 'CLOSE_MODAL' } as const),
 };
