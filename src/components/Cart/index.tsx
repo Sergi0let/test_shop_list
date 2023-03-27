@@ -1,19 +1,22 @@
 import { connect } from 'react-redux';
-import * as selectorsCart from '../../store/cartReducer/selectorsCart';
-// import { getTotalBasketPrice, getBasketPhonesWithCount } from '../../selectors';
-// import {
-//   removePhoneFromBasket,
-//   basketCheckout,
-//   cleanBasket,
-// } from '../../action';
 import { Link } from 'react-router-dom';
-import { ItemsResponseType, StateType } from '../../entities/Items';
+
+import * as selectorsCart from '../../store/cartReducer/selectorsCart';
+import { actionsCart } from '../../store/cartReducer/actionsCart';
+import { StateType } from '../../entities/Items';
 
 import './index.scss';
-
-const Cart = ({ itemsInCart }: PropsType) => {
+import { CartFeaturesType } from '../../entities/cart';
+import FilterButtons from '../common/FilterButtons';
+const Cart = ({
+  itemsInCart,
+  totalPrice,
+  sortItems,
+  plusItem,
+  minusItem,
+  clearCart,
+}: PropsType): JSX.Element => {
   const isBasketEmpty = itemsInCart.length <= 0;
-  console.log('itemsInCart', itemsInCart);
 
   const renderSidebar = () => {
     return (
@@ -24,12 +27,7 @@ const Cart = ({ itemsInCart }: PropsType) => {
         </Link>
         {!isBasketEmpty && (
           <div>
-            <button className="btn btn-danger">
-              <span className="glyphicon glyphicon-trash"></span>
-              Clean cart
-            </button>
-            <button className="btn btn-success">
-              <span className="glyphicon glyphicon-envelope"></span>
+            <button onClick={() => clearCart()} className="btn">
               Clean cart
             </button>
           </div>
@@ -41,38 +39,45 @@ const Cart = ({ itemsInCart }: PropsType) => {
     return (
       <div>
         {isBasketEmpty && <div>Your shopping cart is empty</div>}
-        <div className="table-responsive">
-          <table className="table-bordered table-striped table-condensed cf">
+        <div className="">
+          <table className="">
             <tbody>
-              {itemsInCart.map((item) => (
-                <tr className="item-checout">
-                  <td className="first-column-checkout">
-                    <img
-                      className="img-thumbnail"
-                      src={
-                        'https://images.ctfassets.net/pwv49hug9jad/4TFlhL2UJq6QgwOy2msA2G/551ecbaf540cd98dc523afb9cff82240/picture_books_in_sec_shools_664_02_18_2.jpg?fm=webp'
-                      }
-                      alt={'item.title'}
-                    />
-                  </td>
-                  <td>{'item.title'}</td>
-                  <td>{'item.price'}$</td>
-                  <td>count: {}</td>
-                  <td>
-                    <span
-                      // onClick={() => removePhoneFromBasket(phone.id)}
-                      className="delete-cart"
-                    ></span>
-                  </td>
-                </tr>
-              ))}
+              {sortItems &&
+                sortItems.map((item: CartFeaturesType, index: number) => (
+                  <tr key={index} className="">
+                    <td className="">
+                      <img
+                        className="cart-img"
+                        src={
+                          'https://images.ctfassets.net/pwv49hug9jad/4TFlhL2UJq6QgwOy2msA2G/551ecbaf540cd98dc523afb9cff82240/picture_books_in_sec_shools_664_02_18_2.jpg?fm=webp'
+                        }
+                        alt={'item.title'}
+                      />
+                    </td>
+                    <td>{item.title}</td>
+                    <td className="cart-price">Price: {item.price}$</td>
+                    <td className="cart-price">
+                      total: {item.count ? item.count * item.price : item.price}
+                      $
+                    </td>
+                    <td className="cart-price">Amount: {item.count}</td>
+
+                    <td>
+                      <FilterButtons
+                        label="+/-"
+                        descending={() => plusItem(item.id)}
+                        ascending={() => minusItem(item.id)}
+                      />
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
         {!isBasketEmpty && (
-          <div className="row">
-            <div className="pull-right total-user-checkout">
-              <b>Total: </b>
+          <div className="">
+            <div className="">
+              <b>Total: {totalPrice}</b>
             </div>
           </div>
         )}
@@ -81,10 +86,10 @@ const Cart = ({ itemsInCart }: PropsType) => {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-9">{renderContent()}</div>
-        <div className="col-md-3 btn-user-checkout">{renderSidebar()}</div>
+    <div className="">
+      <div className="">
+        <div className="">{renderSidebar()}</div>
+        <div className="">{renderContent()}</div>
       </div>
     </div>
   );
@@ -92,12 +97,23 @@ const Cart = ({ itemsInCart }: PropsType) => {
 const mapStateToProps = (state: StateType) => {
   return {
     itemsInCart: selectorsCart.cartItems(state),
+    totalPrice: selectorsCart.totalPrice(state),
+    sortItems: selectorsCart.cartSortItems(state),
   };
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  plusItem: actionsCart.plusItem,
+  minusItem: actionsCart.minusItem,
+  clearCart: actionsCart.clearCart,
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
 
 type PropsType = {
-  itemsInCart: number[];
+  itemsInCart: any;
+  totalPrice: number;
+  sortItems: any;
+  plusItem: (id: number) => void;
+  minusItem: (id: number) => void;
+  clearCart: () => void;
 };
