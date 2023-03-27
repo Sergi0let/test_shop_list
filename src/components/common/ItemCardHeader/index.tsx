@@ -2,8 +2,6 @@ import { connect } from 'react-redux';
 import FilterButtons from '../FilterButtons';
 import * as action from '../../../store/items/actionsItems';
 
-import './index.scss';
-
 function ItemCardHeader(props: PropsType): JSX.Element {
   const {
     filterByIDDesc,
@@ -60,6 +58,7 @@ function ItemCardHeader(props: PropsType): JSX.Element {
           label="Stock"
         />
       </td>
+      <td></td>
     </tr>
   );
 }

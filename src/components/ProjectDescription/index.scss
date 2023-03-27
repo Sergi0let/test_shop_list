@@ -1,0 +1,33 @@
+.features {
+  &__title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  &__block {
+    display: block;
+    @media (min-width: 768px) {
+      display: flex;
+      justify-content: space-around;
+      gap: 2rem;
+    }
+  }
+
+  &__list-item {
+    margin-bottom: 3rem;
+    @media (min-width: 768px) {
+      margin-bottom: 0;
+    }
+    li {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      &:first-child {
+        font-size: 1.5rem;
+        margin-bottom: 1.4rem;
+        font-weight: 600;
+      }
+    }
+  }
+}

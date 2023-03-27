@@ -9,6 +9,7 @@ import { CartFeaturesType } from '../../entities/cart';
 import FilterButtons from '../common/FilterButtons';
 
 import './index.scss';
+
 const Cart = ({
   itemsInCart,
   totalPrice,

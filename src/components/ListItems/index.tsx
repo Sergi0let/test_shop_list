@@ -9,7 +9,6 @@ import {
 } from '../../store/items/actionsItems';
 import actionsCart from '../../store/cartReducer/actionsCart';
 
-import ItemCard from '../common/ItemCard';
 import ItemCardHeader from '../common/ItemCardHeader';
 import * as selector from '../../store/items/selectorsItems';
 import * as selectorsCart from '../../store/cartReducer/selectorsCart';
@@ -21,6 +20,8 @@ import { CartFeaturesType } from '../../entities/cart';
 import Cart from '../Cart';
 import RattingRange from '../common/RattingRang';
 import { Link } from 'react-router-dom';
+import ButtonRemove from '../common/ButtonRemove';
+import Spinner from '../common/Loading';
 
 function ListItems({
   itemList,
@@ -41,7 +42,7 @@ function ListItems({
   }, [getAllCategories, getAllItems]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   const showMore = () => {
@@ -83,12 +84,18 @@ function ListItems({
                       </Link>
                     </td>
                     <td>
-                      <RattingRange rating={item.rating} />
+                      <div>
+                        <div>({item.rating})</div>
+                        <RattingRange rating={item.rating} />
+                      </div>
                     </td>
                     <td>{item.category}</td>
                     <td>
                       <div>Amount</div>
                       {item.stock}
+                    </td>
+                    <td>
+                      <ButtonRemove id={item.id} />
                     </td>
                   </tr>
                 ))}

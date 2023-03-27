@@ -1,6 +1,7 @@
+@import '../../../scss/utils/vars.scss';
 .btn-remove {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   border: none;
   background: none;
   cursor: pointer;
@@ -8,5 +9,5 @@
   position: absolute;
   top: 0;
   right: 10px;
-  color: red;
+  color: $danger-color;
 }

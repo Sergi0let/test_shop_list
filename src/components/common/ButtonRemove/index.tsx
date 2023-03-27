@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import * as actionsRemove from '../../../store/items/actionsItems';
+
 import './index.scss';
 
 function ButtonRemove(props: PropsType): JSX.Element {
@@ -11,7 +12,6 @@ function ButtonRemove(props: PropsType): JSX.Element {
 
   const handleRemove = () => {
     removeItem(id);
-    alert(`Delete item with id: ${id}`);
   };
 
   return (

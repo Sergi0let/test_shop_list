@@ -21,6 +21,3 @@ root.render(
     </BrowserRouter>
   </Provider>
 );
-
-let state = store.getState();
-console.log('state index: ', state);

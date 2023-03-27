@@ -5,7 +5,6 @@ import NavBar from '../common/NavBar/NavBar';
 import { cartLength } from '../../store/cartReducer/selectorsCart';
 
 function Header({ cartlength }: PropsType): JSX.Element {
-  console.log('cartlength', cartlength);
   return (
     <header className="navbar">
       <div className="container">

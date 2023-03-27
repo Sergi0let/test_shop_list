@@ -1,15 +1,18 @@
 import { Field, Formik } from 'formik';
 import { connect } from 'react-redux';
 import { actionsModal } from '../../store/items/actionsItems';
-
+import { itemsAPI } from '../../api/api';
 import * as Yup from 'yup';
 
 import './index.scss';
+import { AddItemType } from '../../entities/apiTypes';
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required('Name is required'),
   author: Yup.string().required('author is required'),
-  publish: Yup.string().min(4).max(4).required('Year publish is required'),
+  publish: Yup.string()
+    .matches(/^\d{4}$/, 'Year must contain 4 digits')
+    .required('Year publish is required'),
   rating: Yup.number()
     .min(1)
     .max(5)
@@ -18,10 +21,15 @@ const validationSchema = Yup.object().shape({
     .integer(),
 });
 
-// console.log('validationSchema', validationSchema);
+const postItem = (values: AddItemType) => {
+  itemsAPI.addItem(values).then((res) => {
+    console.log('res', res);
+  });
+};
 
 const FormAddItem = (props: PropsType): JSX.Element => {
   const { closeModal } = props;
+
   return (
     <div className="formItem">
       <h1 className="title">Item form</h1>
@@ -33,7 +41,13 @@ const FormAddItem = (props: PropsType): JSX.Element => {
           rating: 1,
         }}
         onSubmit={(values, actions) => {
-          console.log(values);
+          postItem({
+            title: values.title,
+            author: values.author,
+            publish: values.publish,
+            rating: values.rating,
+          });
+
           actions.setSubmitting(false);
           closeModal();
         }}
@@ -55,6 +69,7 @@ const FormAddItem = (props: PropsType): JSX.Element => {
               <input
                 type="text"
                 name="title"
+                placeholder='Enter "title"'
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.title}
@@ -66,6 +81,7 @@ const FormAddItem = (props: PropsType): JSX.Element => {
               <input
                 type="text"
                 name="author"
+                placeholder='Enter "author"'
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.author}
@@ -75,11 +91,14 @@ const FormAddItem = (props: PropsType): JSX.Element => {
             <div>
               <label htmlFor="publish">Year publish</label>
               <input
+                placeholder='Enter "year publish"'
                 type="number"
                 name="publish"
+                maxLength={parseInt('4')}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.publish}
+                min="1000"
               />
               {errors.publish && touched.publish && <div>{errors.publish}</div>}
             </div>
@@ -94,15 +113,27 @@ const FormAddItem = (props: PropsType): JSX.Element => {
                 onChange={handleChange}
               >
                 {Array.from({ length: 5 }, (_, i) => (
-                  <option key={i}>{i + 1}</option>
+                  <option key={i} value={i + 1}>
+                    {i + 1}
+                  </option>
                 ))}
               </Field>
             </div>
 
-            <button type="submit" disabled={isSubmitting}>
+            <button
+              style={{ height: '60px' }}
+              className="btn btnPrimary"
+              type="submit"
+              disabled={isSubmitting}
+            >
               {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
-            <button type="button" onClick={() => resetForm()}>
+            <button
+              style={{ height: '60px' }}
+              className="btn btnSecondary"
+              type="button"
+              onClick={() => resetForm()}
+            >
               Reset
             </button>
           </form>

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { AddItemType } from '../entities/apiTypes';
 
 export const baseURL = 'https://dummyjson.com/';
 
@@ -25,6 +26,15 @@ export const itemsAPI = {
   },
   async removeItem(id: number) {
     const response = await instance.delete(`products/${id}`);
+    return response;
+  },
+  async addItem({ title, author, publish, rating }: AddItemType) {
+    const response = await instance.post('products/add', {
+      title,
+      author,
+      publish,
+      rating,
+    });
     return response;
   },
 };

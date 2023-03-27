@@ -111,7 +111,6 @@ const reducer = (state = initialState, action: any) => {
       };
 
     case 'SET_FILTER':
-      console.log(action.payload);
       return {
         ...state,
         filter: action.payload,
@@ -124,10 +123,9 @@ const reducer = (state = initialState, action: any) => {
       };
 
     case 'REMOVE_ITEM':
-      console.log('action.payload', action.payload);
       return {
         ...state,
-        itemList: state.itemList.filter((item) => item._id !== action.payload),
+        itemList: state.itemList.filter((item) => item.id !== action.payload),
       };
 
     case 'OPEN_MODAL':
