@@ -40,6 +40,16 @@ export type ItemsStateType = {
 };
 
 export type StateType = {
+  reducer: StateReducerType;
+  reducerCart: CartStateType;
+};
+
+export type CartStateType = {
+  cart: number[];
+  total: number;
+};
+
+export type StateReducerType = {
   cart: ItemsResponseType;
   filter: string;
   total: number;

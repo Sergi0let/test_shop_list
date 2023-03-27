@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import * as selector from '../../store/items/selectorsItems';
+import * as selectorsCart from '../../store/cartReducer/selectorsCart';
 // import { getTotalBasketPrice, getBasketPhonesWithCount } from '../../selectors';
 // import {
 //   removePhoneFromBasket,
@@ -49,12 +49,14 @@ const Cart = ({ itemsInCart }: PropsType) => {
                   <td className="first-column-checkout">
                     <img
                       className="img-thumbnail"
-                      src={item.thumbnail}
-                      alt={item.title}
+                      src={
+                        'https://images.ctfassets.net/pwv49hug9jad/4TFlhL2UJq6QgwOy2msA2G/551ecbaf540cd98dc523afb9cff82240/picture_books_in_sec_shools_664_02_18_2.jpg?fm=webp'
+                      }
+                      alt={'item.title'}
                     />
                   </td>
-                  <td>{item.title}</td>
-                  <td>{item.price}$</td>
+                  <td>{'item.title'}</td>
+                  <td>{'item.price'}$</td>
                   <td>count: {}</td>
                   <td>
                     <span
@@ -89,9 +91,7 @@ const Cart = ({ itemsInCart }: PropsType) => {
 };
 const mapStateToProps = (state: StateType) => {
   return {
-    itemsInCart: selector.cartItems(state),
-    // phones: getBasketPhonesWithCount(state),
-    // totalPrice: getTotalBasketPrice(state),
+    itemsInCart: selectorsCart.cartItems(state),
   };
 };
 
@@ -99,10 +99,5 @@ const mapDispatchToProps = {};
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
 
 type PropsType = {
-  itemsInCart: ItemsResponseType;
-  // phones: Array<PhoneType>;
-  // totalPrice: number;
-  // removePhoneFromBasket: (id: number) => void;
-  // basketCheckout: (phones: Array<PhoneType>) => void;
-  // cleanBasket: () => void;
+  itemsInCart: number[];
 };

@@ -2,16 +2,17 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { ItemsResponseType, ItemType, StateType } from '../../entities/Items';
 import {
-  actionsCart,
   actionsModal,
   getAllCategories,
   getAllItems,
   getMoreItems,
 } from '../../store/items/actionsItems';
+import { actionsCart } from '../../store/cartReducer/actionsCart';
 
 import ItemCard from '../common/ItemCard';
 import ItemCardHeader from '../common/ItemCardHeader';
 import * as selector from '../../store/items/selectorsItems';
+import * as selectorsCart from '../../store/cartReducer/selectorsCart';
 
 import './index.scss';
 import CategoryBtnGroup from '../CategoryBtnGroup';
@@ -94,7 +95,7 @@ const mapStateToProps = (state: StateType) => {
     skip: selector.skip(state),
     total: selector.total(state),
     isModalOpen: selector.isModalOpen(state),
-    cart: state.cart,
+    cart: selectorsCart.cartItems(state),
   };
 };
 
@@ -109,7 +110,7 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(ListItems);
 
 type PropsType = {
-  cart: ItemsResponseType;
+  cart: number[];
   itemList: ItemsResponseType;
   isLoading: boolean;
   skip: number;

@@ -32,7 +32,9 @@ export const actionsFilter = {
 
 export const filterByStockAsc = () => {
   return (dispatch: Dispatch, getState: () => StateType) => {
-    const { itemList } = getState();
+    const {
+      reducer: { itemList },
+    } = getState();
     const sortedItems = itemList.sort(
       (a: ItemType, b: ItemType) => a.stock - b.stock
     );
@@ -42,7 +44,9 @@ export const filterByStockAsc = () => {
 
 export const filterByStockDesc = () => {
   return (dispatch: Dispatch, getState: () => StateType) => {
-    const { itemList } = getState();
+    const {
+      reducer: { itemList },
+    } = getState();
     const sortedItems = itemList.sort(
       (a: ItemType, b: ItemType) => b.stock - a.stock
     );
@@ -52,7 +56,9 @@ export const filterByStockDesc = () => {
 
 export const filterByRatingDesc = () => {
   return (dispatch: Dispatch, getState: () => StateType) => {
-    const { itemList } = getState();
+    const {
+      reducer: { itemList },
+    } = getState();
     const sortedItems = itemList.sort(
       (a: ItemType, b: ItemType) => b.rating - a.rating
     );
@@ -63,7 +69,9 @@ export const filterByRatingDesc = () => {
 
 export const filterByRatingAsc = () => {
   return (dispatch: Dispatch, getState: () => StateType) => {
-    const { itemList } = getState();
+    const {
+      reducer: { itemList },
+    } = getState();
     const sortedItems = itemList.sort(
       (a: ItemType, b: ItemType) => a.rating - b.rating
     );
@@ -74,7 +82,9 @@ export const filterByRatingAsc = () => {
 
 export const filterByPriceDesc = () => {
   return (dispatch: Dispatch, getState: () => StateType) => {
-    const { itemList } = getState();
+    const {
+      reducer: { itemList },
+    } = getState();
     const sortedItems = itemList.sort(
       (a: ItemType, b: ItemType) => b.price - a.price
     );
@@ -85,7 +95,9 @@ export const filterByPriceDesc = () => {
 
 export const filterByPriceAsc = () => {
   return (dispatch: Dispatch, getState: () => StateType) => {
-    const { itemList } = getState();
+    const {
+      reducer: { itemList },
+    } = getState();
     const sortedItems = itemList.sort(
       (a: ItemType, b: ItemType) => a.price - b.price
     );
@@ -96,7 +108,9 @@ export const filterByPriceAsc = () => {
 
 export const filterByTitleDesc = () => {
   return (dispatch: Dispatch, getState: () => StateType) => {
-    const { itemList } = getState();
+    const {
+      reducer: { itemList },
+    } = getState();
     const sortedItems = itemList.sort((a: ItemType, b: ItemType) => {
       if (a.title > b.title) {
         return -1;
@@ -113,7 +127,9 @@ export const filterByTitleDesc = () => {
 
 export const filterByTitleAsc = () => {
   return (dispatch: Dispatch, getState: () => StateType) => {
-    const { itemList } = getState();
+    const {
+      reducer: { itemList },
+    } = getState();
     const sortedItems = itemList.sort((a: ItemType, b: ItemType) => {
       if (a.title > b.title) {
         return 1;
@@ -130,7 +146,9 @@ export const filterByTitleAsc = () => {
 
 export const filterByIDDesc = () => {
   return (dispatch: Dispatch, getState: () => StateType) => {
-    const { itemList } = getState();
+    const {
+      reducer: { itemList },
+    } = getState();
     const sortedItems = itemList.sort((a: any, b: any) => b.id - a.id);
 
     dispatch(actionsFilter.filterByIDDesc(sortedItems));
@@ -138,7 +156,9 @@ export const filterByIDDesc = () => {
 };
 export const filterByIDAsc = () => {
   return (dispatch: Dispatch, getState: () => StateType) => {
-    const { itemList } = getState();
+    const {
+      reducer: { itemList },
+    } = getState();
     const sortedItems = itemList.sort((a: any, b: any) => a.id - b.id);
 
     dispatch(actionsFilter.filterByIDDesc(sortedItems));
@@ -244,8 +264,4 @@ export const searchItems = (filter: string) => async (dispatch: Dispatch) => {
 export const actionsModal = {
   openModal: () => ({ type: 'OPEN_MODAL' } as const),
   closeModal: () => ({ type: 'CLOSE_MODAL' } as const),
-};
-
-export const actionsCart = {
-  addToCart: (payload: ItemType) => ({ type: 'ADD_TO_CART', payload } as const),
 };
