@@ -17,6 +17,7 @@ import * as selectorsCart from '../../store/cartReducer/selectorsCart';
 import './index.scss';
 import CategoryBtnGroup from '../CategoryBtnGroup';
 import FormAddItem from '../FormAddItem';
+import { CartFeaturesType } from '../../entities/cart';
 
 function ListItems(props: PropsType): JSX.Element {
   const {
@@ -30,10 +31,7 @@ function ListItems(props: PropsType): JSX.Element {
     isModalOpen,
     closeModal,
     addItemToCart,
-    cart,
   } = props;
-
-  console.log('cart :  ', cart);
 
   useEffect(() => {
     getAllItems();
@@ -120,5 +118,5 @@ type PropsType = {
   getMoreItemsList: (skip: number) => void;
   getAllCategories: () => void;
   closeModal: () => void;
-  addItemToCart: (id: any) => void;
+  addItemToCart: (item: CartFeaturesType | any) => void;
 };

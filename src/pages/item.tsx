@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { ItemsStateType } from '../entities/Items';
+import { ItemsResponseType, StateType } from '../entities/Items';
 import { useParams } from 'react-router-dom';
 import { getItem } from '../store/items/actionsItems';
 import ItemPage from '../components/common/ItemPage';
 
-function Item(props: any): JSX.Element {
-  const { item, isLoading, getItemData } = props;
+import * as selectors from '../store/items/selectorsItems';
+
+function Item({ item, isLoading, getItemData }: PropsType): JSX.Element {
   const { id } = useParams();
 
   useEffect(() => {
@@ -28,10 +29,10 @@ function Item(props: any): JSX.Element {
   );
 }
 
-const mapStateToProps = (state: Omit<ItemsStateType, 'itemList'>) => {
+const mapStateToProps = (state: StateType) => {
   return {
-    item: state.item,
-    isLoading: state.isLoading,
+    item: selectors.item(state),
+    isLoading: selectors.isLoadingItem(state),
   };
 };
 
@@ -40,3 +41,9 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Item);
+
+type PropsType = {
+  item: ItemsResponseType;
+  isLoading: boolean;
+  getItemData: (id: number) => void;
+};

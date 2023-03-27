@@ -7,3 +7,5 @@ export const total = (state: StateType) => state.reducer.total;
 export const categories = (state: StateType) => state.reducer.categories;
 export const inputValue = (state: StateType) => state.reducer.filter;
 export const isModalOpen = (state: StateType) => state.reducer.isModalVisible;
+export const item = (state: StateType) => state.reducer.item;
+export const isLoadingItem = (state: StateType) => state.reducer.isLoading;

@@ -142,21 +142,6 @@ const reducer = (state = initialState, action: any) => {
         isModalVisible: false,
       };
 
-    case 'ADD_TO_CART':
-      console.log('action.paload', action.paload);
-
-      console.log('actionPayload', action.payload);
-      return {
-        ...state,
-        cart: [...state.cart, action.payload],
-      };
-
-    // case "REMOVE_FROM_CART":
-    //   return {
-    //     ...state,
-    //     cart: state.cart.filter((item) => item !== action.payload),
-    //   };
-
     default:
       return state;
   }

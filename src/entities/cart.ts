@@ -1,4 +1,11 @@
 export type CartStateType = {
   cart: number[];
-  total: number;
+};
+
+export type CartFeaturesType = {
+  id: number;
+  thumbnail: string;
+  title: string;
+  price: number;
+  count?: number;
 };

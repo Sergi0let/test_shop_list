@@ -4,18 +4,7 @@ import RattingRange from '../RattingRang';
 import './index.scss';
 import ButtonRemove from '../ButtonRemove';
 import { Link } from 'react-router-dom';
-
-type ItemCardProps = {
-  category: ItemType['category'];
-  title: ItemType['title'];
-  thumbnail: ItemType['thumbnail'];
-  price: ItemType['price'];
-  rating: ItemType['rating'];
-  description: ItemType['description'];
-  id: ItemType['id'];
-  stock: ItemType['stock'];
-  addItemToCart: (id: number | undefined) => void;
-};
+import { CartFeaturesType } from '../../../entities/cart';
 
 export default function ItemCard(props: ItemCardProps): JSX.Element {
   const {
@@ -39,10 +28,7 @@ export default function ItemCard(props: ItemCardProps): JSX.Element {
       <div
         className="table__title"
         onClick={() => {
-          if (addItemToCart) {
-            console.log('id', id);
-            addItemToCart(id);
-          }
+          id && addItemToCart({ id, thumbnail, title, price });
         }}
       >
         {title}
@@ -67,3 +53,15 @@ export default function ItemCard(props: ItemCardProps): JSX.Element {
     </article>
   );
 }
+
+type ItemCardProps = {
+  category: ItemType['category'];
+  title: ItemType['title'];
+  thumbnail: ItemType['thumbnail'];
+  price: ItemType['price'];
+  rating: ItemType['rating'];
+  description: ItemType['description'];
+  id: ItemType['id'];
+  stock: ItemType['stock'];
+  addItemToCart: (item: CartFeaturesType) => void;
+};
