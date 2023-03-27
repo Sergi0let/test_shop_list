@@ -14,18 +14,39 @@ type ItemCardProps = {
   description: ItemType['description'];
   id: ItemType['id'];
   stock: ItemType['stock'];
+  addItemToCart: (id: number | undefined) => void;
 };
 
 export default function ItemCard(props: ItemCardProps): JSX.Element {
-  const { category, thumbnail, title, price, rating, description, id, stock } =
-    props;
+  const {
+    category,
+    thumbnail,
+    title,
+    price,
+    rating,
+    description,
+    id,
+    stock,
+    addItemToCart,
+  } = props;
+
   return (
     <article className="table">
       <div className="table__id">
         <div>ID</div>
         <div>{id}</div>
       </div>
-      <div className="table__title">{title} </div>
+      <div
+        className="table__title"
+        onClick={() => {
+          if (addItemToCart) {
+            console.log('id', id);
+            addItemToCart(id);
+          }
+        }}
+      >
+        {title}
+      </div>
       <div className="table__description">{createDescription(description)}</div>
       <span className="table__price">{price}₴</span>
       <Link to={`/item/${id}`}>

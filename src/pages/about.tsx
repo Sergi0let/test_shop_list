@@ -1,9 +1,9 @@
-import FormAddItem from '../components/FormAddItem';
+import Cart from '../components/Cart';
 
 export default function About() {
   return (
     <div>
-      <h2>About</h2>
+      <Cart />
     </div>
   );
 }

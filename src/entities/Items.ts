@@ -14,7 +14,6 @@ export type ItemType = {
 
 export type ItemsResponseType = {
   [x: string]: any;
-  map: (arg0: (item: ItemType) => JSX.Element) => import('react').ReactNode;
   brand: string;
   category: string;
   description: string;
@@ -26,6 +25,7 @@ export type ItemsResponseType = {
   stock: number;
   thumbnail: string;
   title: string;
+  map: (arg0: (item: ItemType) => JSX.Element) => import('react').ReactNode;
 };
 
 export type ItemsStateType = {
@@ -40,6 +40,7 @@ export type ItemsStateType = {
 };
 
 export type StateType = {
+  cart: ItemsResponseType;
   filter: string;
   total: number;
   skip: number;

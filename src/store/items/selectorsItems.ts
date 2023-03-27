@@ -7,3 +7,5 @@ export const total = (state: StateType) => state.total;
 export const categories = (state: StateType) => state.categories;
 export const inputValue = (state: StateType) => state.filter;
 export const isModalOpen = (state: StateType) => state.isModalVisible;
+
+export const cartItems = (state: StateType) => state.cart;

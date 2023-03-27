@@ -11,47 +11,40 @@ import * as selector from '../../store/items/selectorsItems';
 import './index.scss';
 
 function CategoryBtnGroup(props: PropsType): JSX.Element {
-  const { categories, getCategory, getAllItems } = props;
-  const [selected, setSelected] = useState(-1);
+  const { categories, getCategoryItems, getAllItems } = props;
+  const [selected, setSelected] = useState('all');
+  console.log('selected', selected);
 
-  const handleClick = (e: React.MouseEvent<HTMLLabelElement>) => {
-    const target = e.target as HTMLLabelElement;
-    const index = target.dataset.index;
-
-    if (index) {
-      setSelected(Number(index));
-    }
-    if (index === '-1') {
-      getAllItems();
-    }
-
-    getCategory(categories[selected - 1]);
+  const handleSelectCategory = (category: string) => {
+    setSelected(category);
   };
 
   const classActive = 'radio-button-group__label--selected';
   return (
     <div className="radio-button-group">
       <ul className="radio-button-group">
-        <label
-          onClick={handleClick}
-          data-index="-1"
-          className={`radio-button-group__label ${
-            selected === -1 && classActive
-          }`}
+        <li
+          className={selected === 'all' ? classActive : ''}
+          onClick={() => {
+            getAllItems();
+          }}
         >
-          <input type="radio" className="radio-button-group__input" />
-          All
-        </label>
+          <label className="radio-button-group__label">
+            <input type="radio" className="radio-button-group__input" />
+            All
+          </label>
+        </li>
         {categories &&
           categories.map((category, index) => (
-            <li key={index + 1}>
-              <label
-                data-index={index + 1}
-                onClick={handleClick}
-                className={`radio-button-group__label ${
-                  selected === index + 1 && classActive
-                }`}
-              >
+            <li
+              className={selected === category ? classActive : ''}
+              key={index + 1}
+              onClick={() => {
+                getCategoryItems(category);
+                handleSelectCategory(category);
+              }}
+            >
+              <label className="radio-button-group__label">
                 <input type="radio" className="radio-button-group__input" />
                 {category}
               </label>
@@ -69,7 +62,7 @@ const mapStateToProps = (state: StateType) => {
 
 const mapDispatchToProps = {
   getAllCategories: getAllCategories,
-  getCategory: getCategories,
+  getCategoryItems: getCategories,
   getAllItems: getAllItems,
 };
 
@@ -78,6 +71,22 @@ export default connect(mapStateToProps, mapDispatchToProps)(CategoryBtnGroup);
 type PropsType = {
   categories: string[];
   getAllCategories: () => void;
-  getCategory: (category: string) => void;
+  getCategoryItems: (category: string) => void;
   getAllItems: () => void;
 };
+
+// const [selected, setSelected] = useState(-1);
+
+// const handleClick = (e: React.MouseEvent<HTMLLabelElement>) => {
+//   const target = e.target as HTMLLabelElement;
+//   const index = target.dataset.index;
+
+//   if (index) {
+//     setSelected(Number(index));
+//   }
+//   if (index === '-1') {
+//     getAllItems();
+//   }
+
+//   getCategory(categories[selected - 1]);
+// };

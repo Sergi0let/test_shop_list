@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { ItemsResponseType, ItemType, StateType } from '../../entities/Items';
 import {
+  actionsCart,
   actionsModal,
   getAllCategories,
   getAllItems,
@@ -28,7 +28,11 @@ function ListItems(props: PropsType): JSX.Element {
     getAllCategories,
     isModalOpen,
     closeModal,
+    addItemToCart,
+    cart,
   } = props;
+
+  console.log('cart :  ', cart);
 
   useEffect(() => {
     getAllItems();
@@ -57,6 +61,7 @@ function ListItems(props: PropsType): JSX.Element {
             itemList.map((item: ItemType) => (
               <li key={item.id} className="list-items__item-card">
                 <ItemCard
+                  addItemToCart={addItemToCart}
                   stock={item.stock}
                   id={item.id}
                   title={item.title}
@@ -89,6 +94,7 @@ const mapStateToProps = (state: StateType) => {
     skip: selector.skip(state),
     total: selector.total(state),
     isModalOpen: selector.isModalOpen(state),
+    cart: state.cart,
   };
 };
 
@@ -97,11 +103,13 @@ const mapDispatchToProps = {
   getMoreItemsList: getMoreItems,
   getAllCategories: getAllCategories,
   closeModal: actionsModal.closeModal,
+  addItemToCart: actionsCart.addToCart,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListItems);
 
 type PropsType = {
+  cart: ItemsResponseType;
   itemList: ItemsResponseType;
   isLoading: boolean;
   skip: number;
@@ -111,4 +119,5 @@ type PropsType = {
   getMoreItemsList: (skip: number) => void;
   getAllCategories: () => void;
   closeModal: () => void;
+  addItemToCart: (id: any) => void;
 };

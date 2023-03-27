@@ -245,3 +245,7 @@ export const actionsModal = {
   openModal: () => ({ type: 'OPEN_MODAL' } as const),
   closeModal: () => ({ type: 'CLOSE_MODAL' } as const),
 };
+
+export const actionsCart = {
+  addToCart: (payload: ItemType) => ({ type: 'ADD_TO_CART', payload } as const),
+};

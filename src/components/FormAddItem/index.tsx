@@ -18,7 +18,7 @@ const validationSchema = Yup.object().shape({
     .integer(),
 });
 
-console.log('validationSchema', validationSchema);
+// console.log('validationSchema', validationSchema);
 
 const FormAddItem = (props: PropsType): JSX.Element => {
   const { closeModal } = props;

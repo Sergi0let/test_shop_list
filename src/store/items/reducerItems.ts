@@ -10,6 +10,7 @@ const initialState = {
   categories: [] as string[],
   filter: '',
   isModalVisible: false,
+  cart: [] as ItemsResponseType[],
 };
 
 const reducer = (state = initialState, action: any) => {
@@ -140,6 +141,21 @@ const reducer = (state = initialState, action: any) => {
         ...state,
         isModalVisible: false,
       };
+
+    case 'ADD_TO_CART':
+      console.log('action.paload', action.paload);
+
+      console.log('actionPayload', action.payload);
+      return {
+        ...state,
+        cart: [...state.cart, action.payload],
+      };
+
+    // case "REMOVE_FROM_CART":
+    //   return {
+    //     ...state,
+    //     cart: state.cart.filter((item) => item !== action.payload),
+    //   };
 
     default:
       return state;
