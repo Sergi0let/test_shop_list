@@ -45,6 +45,7 @@ export type StateType = {
 };
 
 export type CartStateType = {
+  isOpenCart: boolean;
   cart: number[];
   total: number;
 };

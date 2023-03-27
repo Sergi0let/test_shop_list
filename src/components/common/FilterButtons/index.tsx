@@ -44,7 +44,7 @@ export default function FilterButtons(props: PropsType): JSX.Element {
 }
 
 type PropsType = {
-  label: string;
+  label?: string;
   descending: () => void;
   ascending: () => void;
 };

@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import Layout from './components/layout';
 import About from './pages/about';
+import CartPage from './pages/cart';
 import Home from './pages/home';
 import Item from './pages/item';
 import NoMatch from './pages/noMatch';
@@ -14,6 +15,7 @@ export default function App() {
         <Routes>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
+          <Route path="cart" element={<CartPage />} />
           <Route path="item/:id" element={<Item />} />
           <Route path="*" element={<NoMatch />} />
         </Routes>

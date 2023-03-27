@@ -7,7 +7,7 @@ import {
   getAllItems,
   getMoreItems,
 } from '../../store/items/actionsItems';
-import { actionsCart } from '../../store/cartReducer/actionsCart';
+import actionsCart from '../../store/cartReducer/actionsCart';
 
 import ItemCard from '../common/ItemCard';
 import ItemCardHeader from '../common/ItemCardHeader';
@@ -18,21 +18,22 @@ import './index.scss';
 import CategoryBtnGroup from '../CategoryBtnGroup';
 import FormAddItem from '../FormAddItem';
 import { CartFeaturesType } from '../../entities/cart';
+import Cart from '../Cart';
+import RattingRange from '../common/RattingRang';
 
-function ListItems(props: PropsType): JSX.Element {
-  const {
-    itemList,
-    getAllItems,
-    isLoading,
-    getMoreItemsList,
-    skip,
-    total,
-    getAllCategories,
-    isModalOpen,
-    closeModal,
-    addItemToCart,
-  } = props;
-
+function ListItems({
+  itemList,
+  getAllItems,
+  isLoading,
+  getMoreItemsList,
+  skip,
+  total,
+  getAllCategories,
+  isModalOpen,
+  closeModal,
+  addItemToCart,
+  isOpenCart,
+}: PropsType): JSX.Element {
   useEffect(() => {
     getAllItems();
     getAllCategories();
@@ -54,24 +55,39 @@ function ListItems(props: PropsType): JSX.Element {
         onClick={closeModal}
       >
         <CategoryBtnGroup />
-        <ul className="list-items__list">
-          <ItemCardHeader />
-          {itemList &&
-            itemList.map((item: ItemType) => (
-              <li key={item.id} className="list-items__item-card">
-                <ItemCard
-                  addItemToCart={addItemToCart}
-                  stock={item.stock}
-                  id={item.id}
-                  title={item.title}
-                  thumbnail={item.thumbnail}
-                  category={item.category}
-                  price={item.price}
-                  rating={item.rating}
-                  description={item.description}
-                />
-              </li>
-            ))}
+        <div className="list-items__list">
+          <table>
+            <tbody>
+              <ItemCardHeader />
+              {itemList &&
+                itemList.map((item: ItemType) => (
+                  <tr key={item.id}>
+                    <td>
+                      <div>Id:</div>
+                      {item.id}
+                    </td>
+                    <td onClick={() => addItemToCart({ ...item })}>
+                      {item.title}
+                    </td>
+                    <td className="list-items__description">
+                      {item.description}
+                    </td>
+                    <td>{item.price}</td>
+                    <td>
+                      <img src={item.thumbnail} alt={item.title} />
+                    </td>
+                    <td>
+                      <RattingRange rating={item.rating} />
+                    </td>
+                    <td>{item.category}</td>
+                    <td>
+                      <div>Amount</div>
+                      {item.stock}
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
           <div style={{ textAlign: 'center' }}>
             {total >= skip ? (
               <button className="btn btnPrimary" onClick={showMore}>
@@ -79,9 +95,10 @@ function ListItems(props: PropsType): JSX.Element {
               </button>
             ) : null}
           </div>
-        </ul>
+        </div>
       </div>
       {isModalOpen && <FormAddItem />}
+      {isOpenCart && <Cart />}
     </>
   );
 }
@@ -94,6 +111,7 @@ const mapStateToProps = (state: StateType) => {
     total: selector.total(state),
     isModalOpen: selector.isModalOpen(state),
     cart: selectorsCart.cartItems(state),
+    isOpenCart: selectorsCart.isOpenCart(state),
   };
 };
 
@@ -114,6 +132,7 @@ type PropsType = {
   skip: number;
   total: number;
   isModalOpen: boolean;
+  isOpenCart: boolean;
   getAllItems: () => void;
   getMoreItemsList: (skip: number) => void;
   getAllCategories: () => void;

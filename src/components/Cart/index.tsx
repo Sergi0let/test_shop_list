@@ -2,12 +2,13 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import * as selectorsCart from '../../store/cartReducer/selectorsCart';
-import { actionsCart } from '../../store/cartReducer/actionsCart';
+import actionsCart from '../../store/cartReducer/actionsCart';
 import { StateType } from '../../entities/Items';
 
-import './index.scss';
 import { CartFeaturesType } from '../../entities/cart';
 import FilterButtons from '../common/FilterButtons';
+
+import './index.scss';
 const Cart = ({
   itemsInCart,
   totalPrice,
@@ -20,14 +21,13 @@ const Cart = ({
 
   const renderSidebar = () => {
     return (
-      <div>
-        <Link to="/" className="btn btn-info">
-          <span className="glyphicon glyphicon-info-sign"></span>
-          <span>Continue shopping</span>
+      <div className="continue-shop">
+        <Link to="/" className="continue-shop__link btn btnPrimary">
+          Continue shopping
         </Link>
         {!isBasketEmpty && (
           <div>
-            <button onClick={() => clearCart()} className="btn">
+            <button onClick={() => clearCart()} className="btn btnSecondary">
               Clean cart
             </button>
           </div>
@@ -38,19 +38,19 @@ const Cart = ({
   const renderContent = () => {
     return (
       <div>
-        {isBasketEmpty && <div>Your shopping cart is empty</div>}
-        <div className="">
-          <table className="">
+        {isBasketEmpty && (
+          <div className="warning-cart">Your shopping cart is empty</div>
+        )}
+        <div>
+          <table>
             <tbody>
               {sortItems &&
                 sortItems.map((item: CartFeaturesType, index: number) => (
-                  <tr key={index} className="">
-                    <td className="">
+                  <tr key={index}>
+                    <td>
                       <img
                         className="cart-img"
-                        src={
-                          'https://images.ctfassets.net/pwv49hug9jad/4TFlhL2UJq6QgwOy2msA2G/551ecbaf540cd98dc523afb9cff82240/picture_books_in_sec_shools_664_02_18_2.jpg?fm=webp'
-                        }
+                        src={item.thumbnail}
                         alt={'item.title'}
                       />
                     </td>
@@ -62,9 +62,8 @@ const Cart = ({
                     </td>
                     <td className="cart-price">Amount: {item.count}</td>
 
-                    <td>
+                    <td align="center" className="cart-count">
                       <FilterButtons
-                        label="+/-"
                         descending={() => plusItem(item.id)}
                         ascending={() => minusItem(item.id)}
                       />
@@ -75,8 +74,8 @@ const Cart = ({
           </table>
         </div>
         {!isBasketEmpty && (
-          <div className="">
-            <div className="">
+          <div>
+            <div>
               <b>Total: {totalPrice}</b>
             </div>
           </div>
@@ -86,10 +85,10 @@ const Cart = ({
   };
 
   return (
-    <div className="">
-      <div className="">
-        <div className="">{renderSidebar()}</div>
-        <div className="">{renderContent()}</div>
+    <div className="cart">
+      <div className="cart__block">
+        <div>{renderSidebar()}</div>
+        <div>{renderContent()}</div>
       </div>
     </div>
   );

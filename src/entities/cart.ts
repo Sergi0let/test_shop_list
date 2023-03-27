@@ -1,5 +1,6 @@
 export type CartStateType = {
   cart: number[];
+  isOpenCart: boolean;
 };
 
 export type CartFeaturesType = {

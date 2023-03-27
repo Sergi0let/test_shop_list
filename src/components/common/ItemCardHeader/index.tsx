@@ -18,39 +18,49 @@ function ItemCardHeader(props: PropsType): JSX.Element {
     filterByStockAsc,
   } = props;
   return (
-    <div className="table-header">
-      <div className="table-header__controls-filter">
+    <tr className="">
+      <td>
         <FilterButtons
           descending={filterByIDDesc}
           ascending={filterByIDAsc}
           label="ID"
         />
+      </td>
+      <td>
         <FilterButtons
           descending={filterByTitleAsc}
           ascending={filterByTitleDesc}
           label="Title"
         />
-        <h5 className="title-small">Description</h5>
+      </td>
+
+      <td>Description</td>
+
+      <td>
         <FilterButtons
           descending={filterByPriceDesc}
           ascending={filterByPriceAsc}
           label="Price"
         />
-        <h5 className="title-small">Picture</h5>
+      </td>
+      <td>Picture</td>
+
+      <td>
         <FilterButtons
           descending={filterByRatingDesc}
           ascending={filterByRatingAsc}
           label="Rating"
         />
-        <div>
-          <FilterButtons
-            descending={filterByStockDesc}
-            ascending={filterByStockAsc}
-            label="Stock"
-          />
-        </div>
-      </div>
-    </div>
+      </td>
+      <td>Category</td>
+      <td>
+        <FilterButtons
+          descending={filterByStockDesc}
+          ascending={filterByStockAsc}
+          label="Stock"
+        />
+      </td>
+    </tr>
   );
 }
 

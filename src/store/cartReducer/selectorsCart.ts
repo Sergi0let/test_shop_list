@@ -1,6 +1,8 @@
 import { StateType } from '../../entities/Items';
 
 export const cartItems = (state: StateType) => state.reducerCart.cart;
+export const isOpenCart = (state: StateType) => state.reducerCart.isOpenCart;
+export const cartLength = (state: StateType) => state.reducerCart.cart.length;
 
 export const cartSortItems = (state: StateType) => {
   const cart = cartItems(state);

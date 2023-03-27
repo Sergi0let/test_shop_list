@@ -5,5 +5,15 @@
     width: 100%;
     padding-top: 2rem;
     padding-bottom: 2rem;
+
+    td {
+      padding: 0 0.5rem;
+      text-align: center;
+      vertical-align: center;
+    }
+  }
+  &__description {
+    font-size: 0.8rem;
+    color: #666;
   }
 }

@@ -19,4 +19,18 @@
       background-color: #2a2f82;
     }
   }
+
+  // secondary btn
+  &.btnSecondary {
+    color: #494ce8;
+    border: 1px solid #494ce8;
+    background-color: #ffffff;
+    transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+    &:hover {
+      background-color: #f5f5f5;
+    }
+    &:active {
+      background-color: #e5e5e5;
+    }
+  }
 }

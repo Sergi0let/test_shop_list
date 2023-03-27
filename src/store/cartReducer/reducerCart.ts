@@ -2,6 +2,7 @@ import { CartFeaturesType } from '../../entities/cart';
 
 const initialState = {
   cart: [],
+  isOpenCart: false,
 };
 const reducerCart = (state = initialState, action: any) => {
   switch (action.type) {
@@ -36,6 +37,18 @@ const reducerCart = (state = initialState, action: any) => {
       return {
         ...state,
         cart: [],
+      };
+
+    case 'OPEN_CART':
+      return {
+        ...state,
+        isOpenCart: true,
+      };
+
+    case 'CLOSE_CART':
+      return {
+        ...state,
+        isOpenCart: false,
       };
 
     default:

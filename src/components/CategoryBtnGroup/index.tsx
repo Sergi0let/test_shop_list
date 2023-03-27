@@ -13,7 +13,6 @@ import './index.scss';
 function CategoryBtnGroup(props: PropsType): JSX.Element {
   const { categories, getCategoryItems, getAllItems } = props;
   const [selected, setSelected] = useState('all');
-  console.log('selected', selected);
 
   const handleSelectCategory = (category: string) => {
     setSelected(category);
@@ -74,19 +73,3 @@ type PropsType = {
   getCategoryItems: (category: string) => void;
   getAllItems: () => void;
 };
-
-// const [selected, setSelected] = useState(-1);
-
-// const handleClick = (e: React.MouseEvent<HTMLLabelElement>) => {
-//   const target = e.target as HTMLLabelElement;
-//   const index = target.dataset.index;
-
-//   if (index) {
-//     setSelected(Number(index));
-//   }
-//   if (index === '-1') {
-//     getAllItems();
-//   }
-
-//   getCategory(categories[selected - 1]);
-// };
