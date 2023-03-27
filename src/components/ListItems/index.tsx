@@ -20,6 +20,7 @@ import FormAddItem from '../FormAddItem';
 import { CartFeaturesType } from '../../entities/cart';
 import Cart from '../Cart';
 import RattingRange from '../common/RattingRang';
+import { Link } from 'react-router-dom';
 
 function ListItems({
   itemList,
@@ -66,15 +67,20 @@ function ListItems({
                       <div>Id:</div>
                       {item.id}
                     </td>
-                    <td onClick={() => addItemToCart({ ...item })}>
+                    <td
+                      className="list-items__title"
+                      onClick={() => addItemToCart({ ...item })}
+                    >
                       {item.title}
                     </td>
                     <td className="list-items__description">
                       {item.description}
                     </td>
                     <td>{item.price}</td>
-                    <td>
-                      <img src={item.thumbnail} alt={item.title} />
+                    <td className="list-items__img-link">
+                      <Link to={`item/${item.id}`}>
+                        <img src={item.thumbnail} alt={item.title} />
+                      </Link>
                     </td>
                     <td>
                       <RattingRange rating={item.rating} />

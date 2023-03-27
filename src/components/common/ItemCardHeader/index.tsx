@@ -18,7 +18,7 @@ function ItemCardHeader(props: PropsType): JSX.Element {
     filterByStockAsc,
   } = props;
   return (
-    <tr className="">
+    <tr className="item-header">
       <td>
         <FilterButtons
           descending={filterByIDDesc}

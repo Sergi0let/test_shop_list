@@ -6,8 +6,14 @@ import { getItem } from '../store/items/actionsItems';
 import ItemPage from '../components/common/ItemPage';
 
 import * as selectors from '../store/items/selectorsItems';
+import actionsCart from '../store/cartReducer/actionsCart';
 
-function Item({ item, isLoading, getItemData }: PropsType): JSX.Element {
+function Item({
+  item,
+  isLoading,
+  getItemData,
+  addToCart,
+}: PropsType): JSX.Element {
   const { id } = useParams();
 
   useEffect(() => {
@@ -18,6 +24,8 @@ function Item({ item, isLoading, getItemData }: PropsType): JSX.Element {
 
   return (
     <ItemPage
+      id={item.id}
+      addToCart={addToCart}
       category={item.category}
       rating={item.rating}
       stock={item.stock}
@@ -38,6 +46,7 @@ const mapStateToProps = (state: StateType) => {
 
 const mapDispatchToProps = {
   getItemData: getItem,
+  addToCart: actionsCart.addToCart,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Item);
@@ -46,4 +55,5 @@ type PropsType = {
   item: ItemsResponseType;
   isLoading: boolean;
   getItemData: (id: number) => void;
+  addToCart: (id: any) => void;
 };

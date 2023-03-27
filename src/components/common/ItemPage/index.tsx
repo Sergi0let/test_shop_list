@@ -3,9 +3,18 @@ import RattingRange from '../RattingRang';
 
 import './index.scss';
 
-export default function ItemPage(props: ItemType): JSX.Element {
-  const { category, thumbnail, title, stock, price, rating, description } =
-    props;
+export default function ItemPage(props: PropsType): JSX.Element {
+  const {
+    category,
+    thumbnail,
+    title,
+    stock,
+    price,
+    rating,
+    description,
+    id,
+    addToCart,
+  } = props;
 
   return (
     <article className="item-card" style={{ background: '#fff' }}>
@@ -47,8 +56,17 @@ export default function ItemPage(props: ItemType): JSX.Element {
       </div>
 
       <div className="card-btn-seller ">
-        <button className="btn">Add to cart</button>
+        <button
+          onClick={() => addToCart({ id, thumbnail, title, price })}
+          className="btn"
+        >
+          Add to cart
+        </button>
       </div>
     </article>
   );
+}
+
+interface PropsType extends ItemType {
+  addToCart: (id: any) => void;
 }
