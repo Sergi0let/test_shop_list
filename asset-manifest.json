@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "https://sergi0let.github.io/test_shop_list/static/css/main.af27c3df.css",
-    "main.js": "https://sergi0let.github.io/test_shop_list/static/js/main.1f99ec7b.js",
+    "main.js": "https://sergi0let.github.io/test_shop_list/static/js/main.ae548953.js",
     "index.html": "https://sergi0let.github.io/test_shop_list/index.html",
     "main.af27c3df.css.map": "https://sergi0let.github.io/test_shop_list/static/css/main.af27c3df.css.map",
-    "main.1f99ec7b.js.map": "https://sergi0let.github.io/test_shop_list/static/js/main.1f99ec7b.js.map"
+    "main.ae548953.js.map": "https://sergi0let.github.io/test_shop_list/static/js/main.ae548953.js.map"
   },
   "entrypoints": [
     "static/css/main.af27c3df.css",
-    "static/js/main.1f99ec7b.js"
+    "static/js/main.ae548953.js"
   ]
 }
