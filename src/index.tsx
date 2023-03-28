@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import App from './App';
 
 import { Provider } from 'react-redux';
@@ -14,10 +14,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <React.StrictMode>
+    <React.StrictMode>
+      <HashRouter>
         <App />
-      </React.StrictMode>
-    </BrowserRouter>
+      </HashRouter>
+    </React.StrictMode>
   </Provider>
 );

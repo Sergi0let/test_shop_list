@@ -1,5 +1,7 @@
 # Shop App on React
 
+["Explore demo project"](https://sergi0let.github.io/test_shop_list/#/)
+
 ## Description
 
 This is a web application that displays a list of products divided into categories. The application fetches the data from an API, allows users to add and delete items, and uses the Axios library to make requests to the server. The application includes a live search field and provides filters for products on categories and sorting in descending and ascending order by name, id, stock, and price. The application also includes a product cart, where users can add and remove products.
