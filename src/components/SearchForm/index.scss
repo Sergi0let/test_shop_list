@@ -1,25 +1,89 @@
 @import '../../scss/utils/vars.scss';
 
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  @media screen and (min-width: $smTableWidth) {
-    flex-direction: row;
-  }
-  &__block {
-    width: 100%;
+.search {
+  position: relative;
+
+  &__input {
+    position: relative;
+    border-radius: 0.2rem;
+    overflow: hidden;
+    height: 2.5rem;
+    padding: 0 2rem;
+
+    &::placeholder {
+      color: $border-base;
+    }
   }
 
   &__btn {
-    white-space: nowrap;
-    width: 100%;
-    @media screen and (min-width: $smTableWidth) {
-      width: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    background: $main-green;
+    color: #fff;
+    border-radius: 0 0.2rem 0.2rem 0;
+    padding: 0 0.5rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease 0s;
+    font-size: 16px;
+
+    &:hover {
+      background: $main-green-hover;
     }
-    button {
-      width: 100%;
+  }
+
+  &__icon {
+    position: absolute;
+    width: 1.2rem;
+    bottom: 0.7rem;
+    color: $border-base;
+
+    &_search {
+      left: 0.5rem;
+    }
+
+    &_remove {
+      background: transparent;
+      border: none;
+      width: 1.8rem;
+      right: 6.2rem;
+      cursor: pointer;
+      transition: all 0.2s ease 0s;
+      &::before {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: 1.5rem;
+        background: $border-base;
+        left: 0rem;
+        top: 0rem;
+      }
+
+      &:hover {
+        color: $danger-color;
+      }
+    }
+
+    &_microphone {
+      right: 4.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease 0s;
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: 1.5rem;
+        background: $border-base;
+        left: -0.5rem;
+        top: 0.1rem;
+      }
+
+      &:hover {
+        color: $danger-color;
+      }
     }
   }
 }

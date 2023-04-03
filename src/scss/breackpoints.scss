@@ -1,0 +1,7 @@
+@import 'utils/vars';
+
+@mixin to-tablet {
+  @media (min-width: $tableWidth) {
+    @content;
+  }
+}

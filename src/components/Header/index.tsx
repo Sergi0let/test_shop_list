@@ -1,19 +1,56 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { headerData } from '../../seeds/links_data';
-import NavBar from '../common/NavBar/NavBar';
 import { cartLength } from '../../store/cartReducer/selectorsCart';
+import Lang from '../common/Lang';
 
+import SearchForm from '../SearchForm';
+
+import './index.scss';
 function Header({ cartlength }: PropsType): JSX.Element {
   return (
-    <header className="navbar">
+    <header className="header">
       <div className="container">
-        <div className="navbar-content">
-          <Link className="navbar-logo" to={'/'}>
-            {headerData.title}
-          </Link>
-          <div className="navbar-content__links">
-            <Link to="/cart" className="navbar-content__icon">
+        <div className="header-content">
+          <div className="header-content__menu menu-header">
+            <svg
+              className="menu-header__icon-open"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+            <Link className="menu-header__logo" to={'/'}></Link>
+          </div>
+          <div className="header-content__search-header">
+            <SearchForm />
+          </div>
+          <div className="header-content__links">
+            <Lang />
+            <div className="header-content__icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                />
+              </svg>
+            </div>
+
+            <Link to="/cart" className="header-content__icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -29,11 +66,9 @@ function Header({ cartlength }: PropsType): JSX.Element {
                 />
               </svg>
               {cartlength > 0 ? (
-                <span className="navbar-content__amount">{cartlength}</span>
+                <span className="header-content__amount">{cartlength}</span>
               ) : null}
             </Link>
-
-            <NavBar />
           </div>
         </div>
       </div>

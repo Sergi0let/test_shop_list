@@ -14,5 +14,5 @@ export const linksData: LinkNavProps[] = [
 ];
 
 export const headerData = {
-  title: 'Shop App',
+  title: 'ROZETKA',
 };

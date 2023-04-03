@@ -1,5 +1,5 @@
 export const inputData = {
-  placeholder: 'Input you goods',
+  placeholder: 'You are looking for',
   label: 'Search',
   id: 'search',
   name: 'search',

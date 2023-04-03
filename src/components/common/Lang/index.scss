@@ -1,0 +1,35 @@
+@import '../../../scss/utils/vars';
+@import '../../../scss/breackpoints';
+
+.lang {
+  display: flex;
+  align-items: center;
+
+  &__item {
+    &:first-child {
+      border-right: 1px solid #fff;
+      margin-right: 0.4rem;
+    }
+    button {
+      cursor: pointer;
+      background: transparent;
+      font-size: 14px;
+      border: none;
+      color: #fff;
+      transition: all 0.2s ease 0s;
+
+      &:hover {
+        color: $danger-color;
+      }
+    }
+    &_native {
+      display: flex;
+    }
+  }
+
+  .active-lang {
+    button {
+      opacity: 0.5;
+    }
+  }
+}

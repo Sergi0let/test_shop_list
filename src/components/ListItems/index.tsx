@@ -57,57 +57,38 @@ function ListItems({
         onClick={closeModal}
       >
         <CategoryBtnGroup />
-        <div className="list-items__list">
-          <table>
-            <tbody>
-              <ItemCardHeader />
-              {itemList &&
-                itemList.map((item: ItemType) => (
-                  <tr key={item.id}>
-                    <td>
-                      <div>Id:</div>
-                      {item.id}
-                    </td>
-                    <td
-                      className="list-items__title"
-                      onClick={() => addItemToCart({ ...item })}
-                    >
-                      {item.title}
-                    </td>
-                    <td className="list-items__description">
-                      {item.description}
-                    </td>
-                    <td>{item.price}</td>
-                    <td className="list-items__img-link">
-                      <Link to={`item/${item.id}`}>
-                        <img src={item.thumbnail} alt={item.title} />
-                      </Link>
-                    </td>
-                    <td>
-                      <div>
-                        <div>({item.rating})</div>
-                        <RattingRange rating={item.rating} />
-                      </div>
-                    </td>
-                    <td>{item.category}</td>
-                    <td>
-                      <div>Amount</div>
-                      {item.stock}
-                    </td>
-                    <td>
-                      <ButtonRemove id={item.id} />
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-          <div style={{ textAlign: 'center' }}>
-            {total >= skip ? (
-              <button className="btn btnPrimary" onClick={showMore}>
-                Show more
-              </button>
-            ) : null}
-          </div>
+
+        {/* <ItemCardHeader /> */}
+        <ul className="list-items__list">
+          {itemList &&
+            itemList.map((item: ItemType) => (
+              <li key={item.id} className="item">
+                <div className="item__rating">
+                  <RattingRange rating={item.rating} />
+                </div>
+                <Link className="item__img" to={`item/${item.id}`}>
+                  <img src={item.thumbnail} alt={item.title} />
+                </Link>
+
+                <h3
+                  className="item__title"
+                  onClick={() => addItemToCart({ ...item })}
+                >
+                  {item.title}
+                </h3>
+
+                <p className="item__price">{item.price}$</p>
+
+                <ButtonRemove id={item.id} />
+              </li>
+            ))}
+        </ul>
+        <div style={{ textAlign: 'center' }}>
+          {total >= skip ? (
+            <button className="btn btnPrimary" onClick={showMore}>
+              Show more
+            </button>
+          ) : null}
         </div>
       </div>
       {isModalOpen && <FormAddItem />}
