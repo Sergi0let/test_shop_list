@@ -2,7 +2,7 @@ import { createDescription } from '../../../helpers/helpers';
 import { ItemType } from '../../../entities/Items';
 import RattingRange from '../RattingRang';
 import './index.scss';
-import ButtonRemove from '../ButtonRemove';
+import RemoveFavorite from '../RemoveFavorite';
 import { Link } from 'react-router-dom';
 import { CartFeaturesType } from '../../../entities/cart';
 
@@ -49,7 +49,7 @@ export default function ItemCard(props: ItemCardProps): JSX.Element {
         <div>{stock}</div>
         <div className="table__category">{category}</div>
       </div>
-      <ButtonRemove id={id} />
+      <RemoveFavorite id={id} />
     </article>
   );
 }

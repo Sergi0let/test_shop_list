@@ -2,9 +2,9 @@ export type ItemType = {
   brand?: string;
   category: string;
   description: string;
-  discountPercentage?: number;
+  discountPercentage: number;
   id?: number;
-  images?: string[];
+  images: string[];
   price: number;
   rating: number;
   stock: number;

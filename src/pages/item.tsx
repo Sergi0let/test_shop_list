@@ -24,6 +24,8 @@ function Item({
 
   return (
     <ItemPage
+      discountPercentage={item.discountPercentage}
+      images={item.images}
       id={item.id}
       addToCart={addToCart}
       category={item.category}
