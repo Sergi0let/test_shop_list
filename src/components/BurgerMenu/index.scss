@@ -2,8 +2,24 @@
 @import '../../scss/breackpoints.scss';
 
 .burger-menu {
-  height: 100%;
   background: #f7f7f7;
+  overflow: scroll;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background: #000000a6;
+    z-index: 1;
+  }
+
   &__header {
     background: #221f1f;
     padding: 1rem;
@@ -13,9 +29,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    img {
+      max-width: 8rem;
+    }
   }
 
   &__close-btn {
+    cursor: pointer;
     width: 2.5rem;
     height: 2.5rem;
     background: #221f1f;
@@ -23,6 +44,15 @@
     svg {
       stroke: #fff;
     }
+  }
+
+  &__catalog {
+    border-top: 1px solid $neutral-placeholder;
+  }
+
+  &__cart {
+    // display: block;
+    // border-top: 1px solid $neutral-placeholder;
   }
 
   &__registration {
@@ -91,18 +121,74 @@
   }
 }
 
+.catalog {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.4rem 0.5rem;
+  padding: 0.5rem 0.5rem;
+  cursor: pointer;
+  border-radius: 1rem;
+  transition: all 0.3s ease-in-out;
+
+  &__categories {
+    padding: 0rem 1rem;
+  }
+
+  &:hover {
+    background: #00be5221;
+
+    .catalog__icon {
+      background: transparent;
+    }
+  }
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.4rem 0.5rem;
+  padding: 0.5rem 0.5rem;
+  cursor: pointer;
+  border-radius: 1rem;
+  transition: all 0.3s ease-in-out;
+
+  &__amount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: $main-green;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  &:hover {
+    background: #00be5221;
+    .cart__icon {
+      background: transparent;
+    }
+  }
+}
+
 .socials {
   display: flex;
   padding-top: 0.7rem;
+  align-items: center;
 
   &__item {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 2rem;
 
     img {
       width: 100%;
@@ -124,4 +210,15 @@
       object-fit: contain;
     }
   }
+}
+
+.icon-svg {
+  border-radius: 50%;
+  margin-right: 1rem;
+  padding: 0.3rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: $border-base;
+  transition: all 0.3s ease-in-out;
+  stroke: #221f1f;
 }

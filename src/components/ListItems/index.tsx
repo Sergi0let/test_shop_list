@@ -39,7 +39,7 @@ function ListItems({
   isOpenCart,
 }: PropsType): JSX.Element {
   const [category, setCategory] = useState('all');
-  console.log('category', category);
+
   useEffect(() => {
     getAllItems();
     getAllCategories();

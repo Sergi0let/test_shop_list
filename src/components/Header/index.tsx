@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { cartLength } from '../../store/cartReducer/selectorsCart';
@@ -9,12 +10,20 @@ import SearchForm from '../SearchForm';
 import './index.scss';
 
 function Header({ cartlength }: PropsType): JSX.Element {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleOpenMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    console.log('isMenuOpen', isMenuOpen);
+  };
+
   return (
     <header className="header">
       <div className="container">
         <div className="header-content">
           <div className="header-content__menu menu-header">
             <svg
+              onClick={handleOpenMenu}
               className="menu-header__icon-open"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -79,8 +88,15 @@ function Header({ cartlength }: PropsType): JSX.Element {
           <SearchForm />
         </div>
       </div>
-      <div className="header-content__burger-menu">
-        <BurgerMenu />
+      <div
+        className={`header-content__burger-menu ${
+          isMenuOpen && 'header-content__burger-menu_open'
+        }`}
+      >
+        <BurgerMenu
+          cartlength={cartlength}
+          onBurgerMenuClose={handleOpenMenu}
+        />
       </div>
     </header>
   );
