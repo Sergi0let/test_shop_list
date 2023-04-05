@@ -3,7 +3,7 @@ import { LinkNavProps } from '../../../entities/NavLink';
 
 const LinkNav: React.FC<LinkNavProps> = ({ url, title, pathname }) => {
   const activeStyle = {
-    color: '#ffbc04',
+    color: '#fc5c65',
   };
 
   return (

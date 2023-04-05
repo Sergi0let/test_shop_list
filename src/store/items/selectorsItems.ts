@@ -9,3 +9,5 @@ export const inputValue = (state: StateType) => state.reducer.filter;
 export const isModalOpen = (state: StateType) => state.reducer.isModalVisible;
 export const item = (state: StateType) => state.reducer.item;
 export const isLoadingItem = (state: StateType) => state.reducer.isLoading;
+export const itemsListLength = (state: StateType) =>
+  state.reducer.itemList.length;

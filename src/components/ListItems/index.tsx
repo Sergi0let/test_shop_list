@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { ItemsResponseType, ItemType, StateType } from '../../entities/Items';
 import {
@@ -38,6 +38,8 @@ function ListItems({
   addItemToCart,
   isOpenCart,
 }: PropsType): JSX.Element {
+  const [category, setCategory] = useState('all');
+  console.log('category', category);
   useEffect(() => {
     getAllItems();
     getAllCategories();
@@ -51,6 +53,10 @@ function ListItems({
     getMoreItemsList(skip);
   };
 
+  const handleSetCategory = (category: string) => {
+    setCategory(category);
+  };
+
   return (
     <>
       <div
@@ -59,11 +65,13 @@ function ListItems({
         onClick={closeModal}
       >
         <div className="list-items__header">
-          <ItemCardHeader />
+          <ItemCardHeader category={category} />
         </div>
-        <CategoryBtnGroup />
+        <div className="list-items__category">
+          <CategoryBtnGroup onSetCategory={handleSetCategory} />
+        </div>
 
-        {/* <ul className="list-items__list">
+        <ul className="list-items__list">
           {itemList &&
             itemList.map((item: ItemType) => (
               <li key={item.id} className="item">
@@ -151,7 +159,7 @@ function ListItems({
               </svg>
             </li>
           ) : null}
-        </ul> */}
+        </ul>
       </div>
       {isModalOpen && <FormAddItem />}
       {isOpenCart && <Cart />}

@@ -5,10 +5,22 @@
   display: flex;
   align-items: center;
 
+  &__flag {
+    height: 10px;
+    transform: translate(4px, -5px);
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+
   &__item {
+    display: grid;
+
     &:first-child {
       border-right: 1px solid #fff;
-      margin-right: 0.4rem;
     }
     button {
       cursor: pointer;
@@ -23,7 +35,8 @@
       }
     }
     &_native {
-      display: flex;
+      display: grid;
+      grid-template-columns: 10px 1fr;
     }
   }
 

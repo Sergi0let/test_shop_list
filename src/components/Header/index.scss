@@ -38,6 +38,14 @@
     }
   }
 
+  &__burger-menu {
+    position: fixed;
+    top: 0;
+
+    width: 50%;
+    height: 100%;
+  }
+
   &__search-header {
     display: none;
     width: 100%;

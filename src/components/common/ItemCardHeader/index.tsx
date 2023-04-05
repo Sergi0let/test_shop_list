@@ -1,10 +1,14 @@
 import { connect } from 'react-redux';
+import { StateType } from '../../../entities/Items';
 import * as action from '../../../store/items/actionsItems';
+import * as selector from '../../../store/items/selectorsItems';
 
 import './index.scss';
 
 function ItemCardHeader(props: PropsType): JSX.Element {
   const {
+    category,
+    itemsListLength,
     filterByPriceDesc,
     filterByPriceAsc,
     filterByRatingDesc,
@@ -46,8 +50,13 @@ function ItemCardHeader(props: PropsType): JSX.Element {
   return (
     <nav className="item-card-header">
       <div className="item-card-header__title-group group-title">
-        <h1 className="group-title__title">All products</h1>
-        <p className="group-title__count">4 items</p>
+        <h1 className="group-title__title">
+          {category.split('-').join(' ')} products
+        </h1>
+        <p className="group-title__count">
+          {itemsListLength}
+          {itemsListLength >= 1 ? ' items' : 'item'}
+        </p>
       </div>
 
       <div className="item-card-header__select-group">
@@ -79,6 +88,12 @@ function ItemCardHeader(props: PropsType): JSX.Element {
   );
 }
 
+const mapStateToProps = (state: StateType) => {
+  return {
+    itemsListLength: selector.itemsListLength(state),
+  };
+};
+
 const mapDispathToProps = {
   filterByIDDesc: action.filterByIDDesc,
   filterByIDAsc: action.filterByIDAsc,
@@ -91,9 +106,11 @@ const mapDispathToProps = {
   filterByStockDesc: action.filterByStockDesc,
   filterByStockAsc: action.filterByStockAsc,
 };
-export default connect(null, mapDispathToProps)(ItemCardHeader);
+export default connect(mapStateToProps, mapDispathToProps)(ItemCardHeader);
 
 type PropsType = {
+  itemsListLength: number;
+  category: string;
   filterByPriceDesc: () => void;
   filterByPriceAsc: () => void;
   filterByRatingDesc: () => void;

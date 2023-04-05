@@ -1,21 +1,45 @@
 @import '../../scss/utils/vars.scss';
+@import '../../scss/breackpoints.scss';
 
 .radio-button-group {
   display: block;
-  margin-top: 16px;
-  margin-right: 4px;
-  text-transform: uppercase;
+  text-align-last: left;
+  color: $primary-color;
+
+  &__icon {
+    width: 1.2rem;
+    stroke: $neutral-secondary;
+    margin-right: 0.5rem;
+  }
+
+  label {
+    margin-bottom: 0;
+    font-size: 12px;
+
+    @include to-desktop {
+      font-size: 16px;
+    }
+  }
 }
 
 .radio-button-group__label {
-  padding: 0.5rem 0.5rem;
-  border-radius: 0.8rem;
-  background-color: transparent;
+  font-size: 16px;
+  padding-bottom: 0rem;
   cursor: pointer;
   transition: all 0.3s ease-in-out 0s;
 
   &:hover {
-    transform: scale(1.05);
+    color: $danger-color;
+    text-decoration: underline;
+  }
+
+  @include to-tablet {
+    font-size: 16px;
+    padding-bottom: 0.1rem;
+  }
+  @include to-desktop {
+    font-size: 18px;
+    padding-bottom: 0.4rem;
   }
 }
 
@@ -24,9 +48,9 @@
 }
 
 .radio-button-group__label--selected {
-  background-color: #3b82f6;
-  color: #fff;
   cursor: not-allowed;
+  color: $danger-color;
+  text-decoration: underline;
 }
 
 .radio-button-group__input {

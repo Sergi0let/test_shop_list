@@ -47,6 +47,9 @@
 
 .group-select {
   font-size: 14px;
+  color: $neutral-primary;
+  line-height: 1.6;
+
   padding: 0.2rem 0.4rem;
   border-radius: 0.4rem;
   border: 1px solid $border-base;
@@ -54,16 +57,18 @@
   width: 100px;
 
   @include to-phone {
-    font-size: 16px;
-
-    width: 140px;
+    width: 180px;
   }
 
   @include to-tablet {
-    font-size: 18px;
     width: 240px;
+    font-size: 18px;
+    line-height: 2;
   }
-  &__item {
-    font-size: 12px;
+  option {
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }

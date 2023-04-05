@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { cartLength } from '../../store/cartReducer/selectorsCart';
+import BurgerMenu from '../BurgerMenu';
 import Lang from '../common/Lang';
 
 import SearchForm from '../SearchForm';
@@ -77,6 +78,9 @@ function Header({ cartlength }: PropsType): JSX.Element {
         <div className="header-content__mobile-search">
           <SearchForm />
         </div>
+      </div>
+      <div className="header-content__burger-menu">
+        <BurgerMenu />
       </div>
     </header>
   );
