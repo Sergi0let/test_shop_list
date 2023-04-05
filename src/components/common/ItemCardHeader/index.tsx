@@ -1,13 +1,10 @@
 import { connect } from 'react-redux';
-import FilterButtons from '../FilterButtons';
 import * as action from '../../../store/items/actionsItems';
+
+import './index.scss';
 
 function ItemCardHeader(props: PropsType): JSX.Element {
   const {
-    filterByIDDesc,
-    filterByIDAsc,
-    filterByTitleAsc,
-    filterByTitleDesc,
     filterByPriceDesc,
     filterByPriceAsc,
     filterByRatingDesc,
@@ -15,51 +12,70 @@ function ItemCardHeader(props: PropsType): JSX.Element {
     filterByStockDesc,
     filterByStockAsc,
   } = props;
+
+  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    switch (e.target.value) {
+      case 'desc':
+        filterByPriceDesc();
+        break;
+
+      case 'asc':
+        filterByPriceAsc();
+        break;
+
+      case 'rating_desc':
+        filterByRatingDesc();
+        break;
+
+      case 'rating_asc':
+        filterByRatingAsc();
+        break;
+
+      case 'stock_desc':
+        filterByStockDesc();
+        break;
+
+      case 'stock_asc':
+        filterByStockAsc();
+        break;
+
+      default:
+        return null;
+    }
+  };
   return (
-    <tr className="item-header">
-      <td>
-        <FilterButtons
-          descending={filterByIDDesc}
-          ascending={filterByIDAsc}
-          label="ID"
-        />
-      </td>
-      <td>
-        <FilterButtons
-          descending={filterByTitleAsc}
-          ascending={filterByTitleDesc}
-          label="Title"
-        />
-      </td>
+    <nav className="item-card-header">
+      <div className="item-card-header__title-group group-title">
+        <h1 className="group-title__title">All products</h1>
+        <p className="group-title__count">4 items</p>
+      </div>
 
-      <td>Description</td>
-
-      <td>
-        <FilterButtons
-          descending={filterByPriceDesc}
-          ascending={filterByPriceAsc}
-          label="Price"
-        />
-      </td>
-      <td>Picture</td>
-
-      <td>
-        <FilterButtons
-          descending={filterByRatingDesc}
-          ascending={filterByRatingAsc}
-          label="Rating"
-        />
-      </td>
-      <td>Category</td>
-      <td>
-        <FilterButtons
-          descending={filterByStockDesc}
-          ascending={filterByStockAsc}
-          label="Stock"
-        />
-      </td>
-      <td></td>
-    </tr>
+      <div className="item-card-header__select-group">
+        <select className="group-select" onChange={handleSelect} name="filter">
+          <option className="group-select__item" value="default">
+            for raiting
+          </option>
+          <option className="group-select__item" value="desc">
+            expensive to cheap
+          </option>
+          <option className="group-select__item" value="asc">
+            cheap to expensive
+          </option>
+          <option className="group-select__item" value="rating_desc">
+            less popular
+          </option>
+          <option className="group-select__item" value="rating_asc">
+            more popular
+          </option>
+          <option className="group-select__item" value="stock_desc">
+            less stock
+          </option>
+          <option className="group-select__item" value="stock_asc">
+            more stock
+          </option>
+        </select>
+      </div>
+    </nav>
   );
 }
 
@@ -78,10 +94,6 @@ const mapDispathToProps = {
 export default connect(null, mapDispathToProps)(ItemCardHeader);
 
 type PropsType = {
-  filterByIDDesc: () => void;
-  filterByIDAsc: () => void;
-  filterByTitleDesc: () => void;
-  filterByTitleAsc: () => void;
   filterByPriceDesc: () => void;
   filterByPriceAsc: () => void;
   filterByRatingDesc: () => void;

@@ -6,6 +6,7 @@ import Lang from '../common/Lang';
 import SearchForm from '../SearchForm';
 
 import './index.scss';
+
 function Header({ cartlength }: PropsType): JSX.Element {
   return (
     <header className="header">
@@ -32,8 +33,10 @@ function Header({ cartlength }: PropsType): JSX.Element {
             <SearchForm />
           </div>
           <div className="header-content__links">
-            <Lang />
-            <div className="header-content__icon">
+            <div className="header-content__lang-block">
+              <Lang />
+            </div>
+            <div className="header-content__icon header-content__icon_person">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -70,6 +73,9 @@ function Header({ cartlength }: PropsType): JSX.Element {
               ) : null}
             </Link>
           </div>
+        </div>
+        <div className="header-content__mobile-search">
+          <SearchForm />
         </div>
       </div>
     </header>

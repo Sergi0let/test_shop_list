@@ -9,7 +9,7 @@ import {
 } from '../../store/items/actionsItems';
 import actionsCart from '../../store/cartReducer/actionsCart';
 
-// import ItemCardHeader from '../common/ItemCardHeader';
+import ItemCardHeader from '../common/ItemCardHeader';
 import * as selector from '../../store/items/selectorsItems';
 import * as selectorsCart from '../../store/cartReducer/selectorsCart';
 
@@ -24,7 +24,6 @@ import Spinner from '../common/Loading';
 import ImgCmpt from '../common/ImgCmpt';
 
 import './index.scss';
-import { idText } from 'typescript';
 
 function ListItems({
   itemList,
@@ -59,10 +58,12 @@ function ListItems({
         style={isModalOpen ? { opacity: '0.4' } : {}}
         onClick={closeModal}
       >
+        <div className="list-items__header">
+          <ItemCardHeader />
+        </div>
         <CategoryBtnGroup />
 
-        {/* <ItemCardHeader /> */}
-        <ul className="list-items__list">
+        {/* <ul className="list-items__list">
           {itemList &&
             itemList.map((item: ItemType) => (
               <li key={item.id} className="item">
@@ -150,7 +151,7 @@ function ListItems({
               </svg>
             </li>
           ) : null}
-        </ul>
+        </ul> */}
       </div>
       {isModalOpen && <FormAddItem />}
       {isOpenCart && <Cart />}

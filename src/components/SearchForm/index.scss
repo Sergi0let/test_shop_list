@@ -1,4 +1,5 @@
 @import '../../scss/utils/vars.scss';
+@import '../../scss/breackpoints.scss';
 
 .search {
   position: relative;
@@ -11,6 +12,7 @@
     padding: 0 2rem;
 
     &::placeholder {
+      font-size: 16px;
       color: $border-base;
     }
   }
@@ -47,9 +49,11 @@
     &_remove {
       background: transparent;
       border: none;
-      width: 1.8rem;
-      right: 6.2rem;
+      width: 2.2rem;
+      right: 4.7rem;
+      top: 0.4rem;
       cursor: pointer;
+      color: $danger-color;
       transition: all 0.2s ease 0s;
       &::before {
         content: '';
@@ -58,16 +62,21 @@
         height: 1.5rem;
         background: $border-base;
         left: 0rem;
-        top: 0rem;
+        top: 0.1rem;
       }
 
       &:hover {
         color: $danger-color;
       }
+      @include to-phone {
+        right: 6.3rem;
+      }
     }
 
     &_microphone {
-      right: 4.5rem;
+      display: none;
+
+      right: 4.7rem;
       cursor: pointer;
       transition: all 0.2s ease 0s;
 
@@ -78,11 +87,15 @@
         height: 1.5rem;
         background: $border-base;
         left: -0.5rem;
-        top: 0.1rem;
+        top: 0.25rem;
       }
 
       &:hover {
         color: $danger-color;
+      }
+
+      @include to-phone {
+        display: block;
       }
     }
   }

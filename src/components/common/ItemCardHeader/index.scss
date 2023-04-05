@@ -1,0 +1,69 @@
+@import '../../../scss/utils/vars.scss';
+@import '../../../scss/breackpoints.scss';
+
+.item-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+
+  @include to-tablet {
+    padding: 20px 0;
+  }
+}
+
+.group-title {
+  display: flex;
+
+  &__title {
+    font-size: 16px;
+    margin-right: 14px;
+  }
+  &__count {
+    font-size: 14px;
+    color: $neutral-primary;
+    line-height: 1.6;
+  }
+
+  @include to-phone {
+    &__title {
+      font-size: 18px;
+    }
+    &__count {
+      font-size: 16px;
+    }
+  }
+  @include to-tablet {
+    &__title {
+      font-size: 24px;
+      margin-right: 24px;
+    }
+    &__count {
+      font-size: 18px;
+      line-height: 2;
+    }
+  }
+}
+
+.group-select {
+  font-size: 14px;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.4rem;
+  border: 1px solid $border-base;
+  text-align: center;
+  width: 100px;
+
+  @include to-phone {
+    font-size: 16px;
+
+    width: 140px;
+  }
+
+  @include to-tablet {
+    font-size: 18px;
+    width: 240px;
+  }
+  &__item {
+    font-size: 12px;
+  }
+}

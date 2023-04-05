@@ -7,10 +7,14 @@
   left: 0;
   right: 0;
   z-index: 99;
-  padding: 20px 0;
+  padding: 15px 0;
   background-color: $g-0;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
   background: #221f1f;
+
+  @include to-phone {
+    padding: 20px 0;
+  }
 }
 
 .header-content {
@@ -35,8 +39,21 @@
   }
 
   &__search-header {
-    width: 50%;
+    display: none;
+    width: 100%;
     margin: 0 20px;
+
+    @include to-phone {
+      display: block;
+    }
+  }
+
+  &__mobile-search {
+    display: block;
+    margin-top: 10px;
+    @include to-phone {
+      display: none;
+    }
   }
 
   &__logo {
@@ -48,6 +65,13 @@
     display: flex;
     gap: 24px;
     align-items: center;
+  }
+
+  &__lang-block {
+    display: none;
+    @include to-tablet {
+      display: block;
+    }
   }
   &__icon {
     position: relative;
@@ -62,6 +86,13 @@
       background: #80808088;
       .header-content__amount {
         background: $danger-color;
+      }
+    }
+
+    &_person {
+      display: none;
+      @include to-tablet {
+        display: block;
       }
     }
   }
@@ -99,7 +130,7 @@
     height: 40px;
     background: url('../../img/logo-rozetka-small.svg') left/contain no-repeat;
 
-    @include to-tablet {
+    @include to-desktop {
       width: 240px;
 
       background: url('../../img/logo-rozetka.svg') left/contain no-repeat;
