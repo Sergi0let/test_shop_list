@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
+
 import { ItemsResponseType, ItemType, StateType } from '../../entities/Items';
 import {
   actionsModal,
@@ -8,20 +10,17 @@ import {
   getMoreItems,
 } from '../../store/items/actionsItems';
 import actionsCart from '../../store/cartReducer/actionsCart';
-
 import ItemCardHeader from '../common/ItemCardHeader';
-import * as selector from '../../store/items/selectorsItems';
-import * as selectorsCart from '../../store/cartReducer/selectorsCart';
-
 import CategoryBtnGroup from '../CategoryBtnGroup';
 import FormAddItem from '../FormAddItem';
 import { CartFeaturesType } from '../../entities/cart';
 import Cart from '../Cart';
 import RattingRange from '../common/RattingRang';
-import { Link } from 'react-router-dom';
 import RemoveFavorite from '../common/RemoveFavorite';
 import Spinner from '../common/Loading';
 import ImgCmpt from '../common/ImgCmpt';
+import * as selector from '../../store/items/selectorsItems';
+import * as selectorsCart from '../../store/cartReducer/selectorsCart';
 
 import './index.scss';
 
@@ -38,8 +37,6 @@ function ListItems({
   addItemToCart,
   isOpenCart,
 }: PropsType): JSX.Element {
-  const [category, setCategory] = useState('all');
-
   useEffect(() => {
     getAllItems();
     getAllCategories();
@@ -53,10 +50,6 @@ function ListItems({
     getMoreItemsList(skip);
   };
 
-  const handleSetCategory = (category: string) => {
-    setCategory(category);
-  };
-
   return (
     <>
       <div
@@ -65,10 +58,10 @@ function ListItems({
         onClick={closeModal}
       >
         <div className="list-items__header">
-          <ItemCardHeader category={category} />
+          <ItemCardHeader />
         </div>
         <div className="list-items__category">
-          <CategoryBtnGroup onSetCategory={handleSetCategory} />
+          <CategoryBtnGroup />
         </div>
 
         <ul className="list-items__list">

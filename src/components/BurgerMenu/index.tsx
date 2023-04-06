@@ -1,3 +1,9 @@
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { connect } from 'react-redux';
+
+import { actions } from '../../store/items/actionsItems';
+
 import CategoryBtnGroup from '../CategoryBtnGroup';
 import telegram from '../../img/telegram.png';
 import viber from '../../img/viber.png';
@@ -5,25 +11,15 @@ import gmail from '../../img/gmail.png';
 import google_play from '../../img/google_play.png';
 import app_store from '../../img/app_store.png';
 import whatsup from '../../img/whatsup.png';
-
 import logo from '../../img/logo-rozetka.svg';
-import { actions } from '../../store/items/actionsItems';
 
 import './index.scss';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import { connect } from 'react-redux';
 
 function BurgerMenu({ closeMenu, cartlength }: BurgerMenuProps): JSX.Element {
   const [categories, setCategories] = useState(false);
-  const [, setCategory] = useState('');
 
   const onCategoriesClick = () => {
     setCategories(!categories);
-  };
-
-  const handleSetCategory = (category: string) => {
-    setCategory(category);
   };
 
   return (
@@ -54,7 +50,12 @@ function BurgerMenu({ closeMenu, cartlength }: BurgerMenuProps): JSX.Element {
           </div>
           <div className="burger-menu__registration">
             <div className="registration">
-              <div className="registration__icon">
+              <div
+                className="registration__icon"
+                onClick={() =>
+                  alert('While this functionality is not supported')
+                }
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -71,8 +72,14 @@ function BurgerMenu({ closeMenu, cartlength }: BurgerMenuProps): JSX.Element {
               </div>
 
               <div className="registration__features">
-                <button>Exit</button>
-                <button>Registration</button>
+                <button onClick={() => closeMenu()}>Exit</button>
+                <button
+                  onClick={() =>
+                    alert('While this functionality is not supported')
+                  }
+                >
+                  Registration
+                </button>
                 <p>Sign in for advanced features</p>
               </div>
             </div>
@@ -99,12 +106,16 @@ function BurgerMenu({ closeMenu, cartlength }: BurgerMenuProps): JSX.Element {
             </div>
           </div>
           {categories ? (
-            <div className="catalog__categories">
-              <CategoryBtnGroup onSetCategory={handleSetCategory} />
+            <div className="catalog__categories" onClick={() => closeMenu()}>
+              <CategoryBtnGroup />
             </div>
           ) : null}
         </div>
-        <Link to="/cart" className="burger-menu__cart">
+        <Link
+          to="/cart"
+          className="burger-menu__cart"
+          onClick={() => closeMenu()}
+        >
           <div className="cart">
             <div>
               <svg
@@ -145,7 +156,7 @@ function BurgerMenu({ closeMenu, cartlength }: BurgerMenuProps): JSX.Element {
           </ul>
         </div>
       </div>
-
+      {/* socials-block */}
       <div className="burger-menu__socials">
         <p>You can find me in social networks</p>
         <ul className="socials">

@@ -13,3 +13,5 @@ export const itemsListLength = (state: StateType) =>
   state.reducer.itemList.length;
 export const isMenuOpenSelector = (state: StateType) =>
   state.reducer.isMenuOpen;
+
+export const categorySelector = (state: StateType) => state.reducer.category;

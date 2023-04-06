@@ -1,32 +1,39 @@
-import { useState } from 'react';
+import { connect } from 'react-redux';
+
 import {
+  actions,
   getAllCategories,
   getAllItems,
   getCategories,
 } from '../../store/items/actionsItems';
-import { connect } from 'react-redux';
 import { StateType } from '../../entities/Items';
 import * as selector from '../../store/items/selectorsItems';
 
 import './index.scss';
 
 function CategoryBtnGroup(props: PropsType): JSX.Element {
-  const { categories, getCategoryItems, getAllItems, onSetCategory } = props;
-  const [selected, setSelected] = useState('all');
+  const {
+    categories,
+    getCategoryItems,
+    getAllItems,
+    addCategory,
+    categorySelector,
+  } = props;
 
   const handleSelectCategory = (category: string) => {
-    setSelected(category);
+    addCategory(category);
   };
 
   const classActive = 'radio-button-group__label--selected';
+
   return (
     <div className="radio-button-group">
       <ul className="radio-button-group">
         <li
-          className={selected === 'all' ? classActive : ''}
+          className={categorySelector === 'all' ? classActive : ''}
           onClick={() => {
             getAllItems();
-            onSetCategory('all');
+            handleSelectCategory('all');
           }}
         >
           <label className="radio-button-group__label">
@@ -51,12 +58,11 @@ function CategoryBtnGroup(props: PropsType): JSX.Element {
         {categories &&
           categories.map((category, index) => (
             <li
-              className={selected === category ? classActive : ''}
+              className={categorySelector === category ? classActive : ''}
               key={index + 1}
               onClick={() => {
                 getCategoryItems(category);
                 handleSelectCategory(category);
-                onSetCategory(category);
               }}
             >
               <label className="radio-button-group__label">
@@ -88,6 +94,7 @@ function CategoryBtnGroup(props: PropsType): JSX.Element {
 const mapStateToProps = (state: StateType) => {
   return {
     categories: selector.categories(state),
+    categorySelector: selector.categorySelector(state),
   };
 };
 
@@ -95,14 +102,17 @@ const mapDispatchToProps = {
   getAllCategories: getAllCategories,
   getCategoryItems: getCategories,
   getAllItems: getAllItems,
+
+  addCategory: actions.addCategory,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryBtnGroup);
 
 type PropsType = {
   categories: string[];
+  categorySelector: string;
   getAllCategories: () => void;
   getCategoryItems: (category: string) => void;
   getAllItems: () => void;
-  onSetCategory: (category: string) => void;
+  addCategory: (category: string) => void;
 };

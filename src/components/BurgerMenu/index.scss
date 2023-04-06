@@ -39,12 +39,6 @@
     border-top: 1px solid $neutral-placeholder;
   }
 
-  &__cart {
-  }
-
-  &__registration {
-  }
-
   &__apps {
     border-top: 1px solid $neutral-placeholder;
     padding: 1rem;
@@ -84,6 +78,7 @@
 
   &__features {
     button {
+      cursor: pointer;
       font-size: 0.9rem;
       background: none;
       color: #fff;
@@ -93,12 +88,17 @@
       font-weight: 600;
       font-size: 1rem;
       margin-bottom: 0.5rem;
+      transition: all 0.3s ease-in-out;
 
       &:first-child {
         &:after {
           content: '|';
           margin: 1rem;
         }
+      }
+
+      &:hover {
+        color: $main-green-hover;
       }
     }
     p {

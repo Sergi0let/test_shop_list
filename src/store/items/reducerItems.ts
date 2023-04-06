@@ -1,6 +1,7 @@
 import { ItemsResponseType } from '../../entities/Items';
 
 const initialState = {
+  category: 'all',
   isMenuOpen: false,
   isLoading: false,
   itemList: [] as ItemsResponseType[],
@@ -151,6 +152,12 @@ const reducer = (state = initialState, action: any) => {
       return {
         ...state,
         isMenuOpen: false,
+      };
+
+    case 'ADD_CATEGORY':
+      return {
+        ...state,
+        category: action.payload,
       };
 
     default:

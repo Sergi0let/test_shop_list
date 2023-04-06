@@ -91,6 +91,7 @@ function ItemCardHeader(props: PropsType): JSX.Element {
 const mapStateToProps = (state: StateType) => {
   return {
     itemsListLength: selector.itemsListLength(state),
+    category: selector.categorySelector(state),
   };
 };
 

@@ -176,6 +176,8 @@ export const actions = {
   removeItem: (payload: number) => ({ type: 'REMOVE_ITEM', payload } as const),
   openMenu: () => ({ type: 'OPEN_MENU' } as const),
   closeMenu: () => ({ type: 'CLOSE_MENU' } as const),
+  addCategory: (payload: string) =>
+    ({ type: 'ADD_CATEGORY', payload } as const),
 };
 
 export const removeItem = (id: number) => async (dispatch: Dispatch) => {
