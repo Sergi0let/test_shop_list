@@ -1,6 +1,7 @@
 import { ItemsResponseType } from '../../entities/Items';
 
 const initialState = {
+  isMenuOpen: false,
   isLoading: false,
   itemList: [] as ItemsResponseType[],
   item: {} as ItemsResponseType,
@@ -138,6 +139,18 @@ const reducer = (state = initialState, action: any) => {
       return {
         ...state,
         isModalVisible: false,
+      };
+
+    case 'OPEN_MENU':
+      return {
+        ...state,
+        isMenuOpen: true,
+      };
+
+    case 'CLOSE_MENU':
+      return {
+        ...state,
+        isMenuOpen: false,
       };
 
     default:

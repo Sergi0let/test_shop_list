@@ -7,15 +7,14 @@ import app_store from '../../img/app_store.png';
 import whatsup from '../../img/whatsup.png';
 
 import logo from '../../img/logo-rozetka.svg';
+import { actions } from '../../store/items/actionsItems';
 
 import './index.scss';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { connect } from 'react-redux';
 
-function BurgerMenu({
-  cartlength,
-  onBurgerMenuClose,
-}: BurgerMenuProps): JSX.Element {
+function BurgerMenu({ closeMenu, cartlength }: BurgerMenuProps): JSX.Element {
   const [categories, setCategories] = useState(false);
   const [, setCategory] = useState('');
 
@@ -25,7 +24,6 @@ function BurgerMenu({
 
   const handleSetCategory = (category: string) => {
     setCategory(category);
-    onBurgerMenuClose();
   };
 
   return (
@@ -35,7 +33,7 @@ function BurgerMenu({
           <div className="burger-menu__header-logo">
             <img src={logo} alt="logo" />
             <button
-              onClick={() => onBurgerMenuClose()}
+              onClick={closeMenu}
               type="button"
               className="burger-menu__close-btn"
             >
@@ -106,11 +104,7 @@ function BurgerMenu({
             </div>
           ) : null}
         </div>
-        <Link
-          onClick={() => onBurgerMenuClose()}
-          to="/cart"
-          className="burger-menu__cart"
-        >
+        <Link to="/cart" className="burger-menu__cart">
           <div className="cart">
             <div>
               <svg
@@ -193,9 +187,13 @@ function BurgerMenu({
   );
 }
 
-export default BurgerMenu;
+const mapDispatchToProps = {
+  closeMenu: actions.closeMenu,
+};
+
+export default connect(null, mapDispatchToProps)(BurgerMenu);
 
 type BurgerMenuProps = {
-  onBurgerMenuClose: () => void;
   cartlength: number;
+  closeMenu: () => void;
 };

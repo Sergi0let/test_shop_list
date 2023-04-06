@@ -51,6 +51,7 @@ export type CartStateType = {
 };
 
 export type StateReducerType = {
+  isMenuOpen: boolean;
   cart: ItemsResponseType;
   filter: string;
   total: number;

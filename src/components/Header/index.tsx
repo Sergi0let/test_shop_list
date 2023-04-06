@@ -1,29 +1,28 @@
-import { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { cartLength } from '../../store/cartReducer/selectorsCart';
+import { isMenuOpenSelector } from '../../store/items/selectorsItems';
 import BurgerMenu from '../BurgerMenu';
 import Lang from '../common/Lang';
+import { actions } from '../../store/items/actionsItems';
 
 import SearchForm from '../SearchForm';
 
 import './index.scss';
 
-function Header({ cartlength }: PropsType): JSX.Element {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const handleOpenMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-    console.log('isMenuOpen', isMenuOpen);
-  };
-
+function Header({
+  cartlength,
+  isMenuOpen,
+  openMenu,
+  closeMenu,
+}: PropsType): JSX.Element {
   return (
     <header className="header">
       <div className="container">
         <div className="header-content">
           <div className="header-content__menu menu-header">
             <svg
-              onClick={handleOpenMenu}
+              onClick={openMenu}
               className="menu-header__icon-open"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -93,11 +92,9 @@ function Header({ cartlength }: PropsType): JSX.Element {
           isMenuOpen && 'header-content__burger-menu_open'
         }`}
       >
-        <BurgerMenu
-          cartlength={cartlength}
-          onBurgerMenuClose={handleOpenMenu}
-        />
+        <BurgerMenu cartlength={cartlength} />
       </div>
+      {isMenuOpen && <div className="header-content__bg-open"></div>}
     </header>
   );
 }
@@ -105,11 +102,20 @@ function Header({ cartlength }: PropsType): JSX.Element {
 const mapStateToProps = (state: any) => {
   return {
     cartlength: cartLength(state),
+    isMenuOpen: isMenuOpenSelector(state),
   };
 };
 
-export default connect(mapStateToProps, null)(Header);
+const mapDispatchToProps = {
+  openMenu: actions.openMenu,
+  closeMenu: actions.closeMenu,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
 type PropsType = {
   cartlength: number;
+  isMenuOpen: boolean;
+  openMenu: () => void;
+  closeMenu: () => void;
 };

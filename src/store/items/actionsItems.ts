@@ -165,7 +165,7 @@ export const filterByIDAsc = () => {
   };
 };
 
-const actions = {
+export const actions = {
   requestData: () => ({ type: 'REQUEST_DATA' } as const),
   receiveData: (payload: ItemsResponseType[]) =>
     ({ type: 'GET_ALL_ITEMS', payload } as const),
@@ -174,6 +174,8 @@ const actions = {
   receiveMoreItems: (payload: ItemsResponseType[]) =>
     ({ type: 'GET_MORE_ITEMS', payload } as const),
   removeItem: (payload: number) => ({ type: 'REMOVE_ITEM', payload } as const),
+  openMenu: () => ({ type: 'OPEN_MENU' } as const),
+  closeMenu: () => ({ type: 'CLOSE_MENU' } as const),
 };
 
 export const removeItem = (id: number) => async (dispatch: Dispatch) => {
