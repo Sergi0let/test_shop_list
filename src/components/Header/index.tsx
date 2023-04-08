@@ -4,8 +4,10 @@ import { cartLength } from '../../store/cartReducer/selectorsCart';
 import { isMenuOpenSelector } from '../../store/items/selectorsItems';
 import BurgerMenu from '../BurgerMenu';
 import Lang from '../common/Lang';
+import CartModal from '../CartModal';
 import { actions } from '../../store/items/actionsItems';
-
+import actionsCart from '../../store/cartReducer/actionsCart';
+import { isOpenCart } from '../../store/cartReducer/selectorsCart';
 import SearchForm from '../SearchForm';
 
 import './index.scss';
@@ -15,11 +17,17 @@ function Header({
   isMenuOpen,
   openMenu,
   closeMenu,
+  isOpenCart,
+  openCart,
+  closeCart,
 }: PropsType): JSX.Element {
   return (
     <header className="header">
       <div className="container">
-        <div className="header-content">
+        <div
+          className="header-content"
+          style={isMenuOpen || isOpenCart ? { zIndex: '-1' } : {}}
+        >
           <div className="header-content__menu menu-header">
             <svg
               onClick={openMenu}
@@ -62,7 +70,7 @@ function Header({
               </svg>
             </div>
 
-            <Link to="/cart" className="header-content__icon">
+            <div onClick={() => openCart()} className="header-content__icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -80,7 +88,7 @@ function Header({
               {cartlength > 0 ? (
                 <span className="header-content__amount">{cartlength}</span>
               ) : null}
-            </Link>
+            </div>
           </div>
         </div>
         <div className="header-content__mobile-search">
@@ -94,7 +102,17 @@ function Header({
       >
         <BurgerMenu cartlength={cartlength} />
       </div>
-      {isMenuOpen && <div className="header-content__bg-open"></div>}
+      <CartModal />
+
+      {isOpenCart || isMenuOpen ? (
+        <div
+          onClick={() => {
+            closeCart();
+            closeMenu();
+          }}
+          className="header-content__bg-open"
+        ></div>
+      ) : null}
     </header>
   );
 }
@@ -103,19 +121,25 @@ const mapStateToProps = (state: any) => {
   return {
     cartlength: cartLength(state),
     isMenuOpen: isMenuOpenSelector(state),
+    isOpenCart: isOpenCart(state),
   };
 };
 
 const mapDispatchToProps = {
   openMenu: actions.openMenu,
   closeMenu: actions.closeMenu,
+  openCart: actionsCart.openCart,
+  closeCart: actionsCart.closeCart,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
 type PropsType = {
+  isOpenCart: boolean;
   cartlength: number;
   isMenuOpen: boolean;
   openMenu: () => void;
   closeMenu: () => void;
+  openCart: () => void;
+  closeCart: () => void;
 };

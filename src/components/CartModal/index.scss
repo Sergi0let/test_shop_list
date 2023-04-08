@@ -1,0 +1,109 @@
+@import '../../scss/utils/vars.scss';
+@import '../../scss/breackpoints.scss';
+
+.cart-modal.close-cart {
+  transform: scale(0);
+}
+
+.cart-modal {
+  position: fixed;
+  left: 5vw;
+  width: 90vw;
+  height: 90vh;
+  background-color: #fff;
+  color: $neutral-regular;
+  margin: 0 auto;
+  padding: 0.7rem 1rem;
+  transition: all 0.3s ease 0s;
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 85%;
+    text-align: center;
+    font-size: 1.5rem;
+    color: $neutral-regular;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.7rem;
+  }
+
+  &__close-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    color: $neutral-regular;
+    width: 2rem;
+    transition: color 0.3s ease 0s;
+
+    &:hover {
+      color: $danger-color;
+    }
+  }
+}
+
+.actions-cart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+
+  &__continue {
+    border-radius: 0.4rem;
+    line-height: 2rem;
+    padding: 0 1rem;
+    color: inherit;
+    background-color: $border-light;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+
+    &:hover {
+      color: $danger-color;
+    }
+  }
+
+  &__resive {
+    display: flex;
+    align-items: center;
+    padding-top: 1rem;
+    border-radius: 0.2rem;
+    line-height: 2rem;
+    padding: 1rem;
+    color: inherit;
+    background-color: rgba(37, 138, 37, 0.224);
+    border: 1px solid $main-green;
+
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+
+    &:hover {
+      .actions-cart__btn {
+        background-color: $main-green-hover;
+      }
+    }
+  }
+
+  &__amount {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-right: 1rem;
+  }
+
+  &__btn {
+    border-radius: 0.4rem;
+    line-height: 2.4rem;
+    padding: 0 1rem;
+    color: #fff;
+    background-color: $main-green;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease 0s;
+  }
+}

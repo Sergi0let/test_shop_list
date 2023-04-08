@@ -8,5 +8,6 @@ const actionsCart = {
   clearCart: () => ({ type: 'CLEAR_CART' } as const),
   openCart: () => ({ type: 'OPEN_CART' } as const),
   closeCart: () => ({ type: 'CLOSE_CART' } as const),
+  removeItem: (payload: number) => ({ type: 'REMOVE_ITEM', payload } as const),
 };
 export default actionsCart;

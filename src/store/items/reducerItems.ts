@@ -46,30 +46,6 @@ const reducer = (state = initialState, action: any) => {
         itemList: [...state.itemList, ...action.payload.products],
       };
 
-    case 'FILTER_BY_ID_DESC':
-      return {
-        ...state,
-        itemList: [...action.payload],
-      };
-
-    case 'FILTER_BY_ID_ASC':
-      return {
-        ...state,
-        itemList: [...action.payload],
-      };
-
-    case 'FILTER_BY_TITLE_DESC':
-      return {
-        ...state,
-        itemList: [...action.payload],
-      };
-
-    case 'FILTER_BY_TITLE_ASC':
-      return {
-        ...state,
-        itemList: [...action.payload],
-      };
-
     case 'FILTER_BY_PRICE_DESC':
       return {
         ...state,

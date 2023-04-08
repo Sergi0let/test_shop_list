@@ -21,6 +21,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 
   &__bg-open {
     position: fixed;
@@ -30,6 +31,7 @@
     bottom: 0;
     background: #00000088;
     z-index: -1;
+    transition: all 0.4s ease 0s;
   }
 
   &__menu {

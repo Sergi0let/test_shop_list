@@ -12,9 +12,7 @@ import {
 import actionsCart from '../../store/cartReducer/actionsCart';
 import ItemCardHeader from '../common/ItemCardHeader';
 import CategoryBtnGroup from '../CategoryBtnGroup';
-import FormAddItem from '../FormAddItem';
 import { CartFeaturesType } from '../../entities/cart';
-import Cart from '../Cart';
 import RattingRange from '../common/RattingRang';
 import RemoveFavorite from '../common/RemoveFavorite';
 import Spinner from '../common/Loading';
@@ -154,8 +152,6 @@ function ListItems({
           ) : null}
         </ul>
       </div>
-      {isModalOpen && <FormAddItem />}
-      {isOpenCart && <Cart />}
     </>
   );
 }

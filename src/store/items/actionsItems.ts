@@ -5,17 +5,10 @@ import {
   ItemType,
   StateType,
 } from '../../entities/Items';
+
 import { Dispatch } from 'redux';
 
 export const actionsFilter = {
-  filterByIDDesc: (payload: ItemsResponseType[]) =>
-    ({ type: 'FILTER_BY_ID_DESC', payload } as const),
-  filterByIDAsc: (payload: ItemsResponseType[]) =>
-    ({ type: 'FILTER_BY_ID_ASC', payload } as const),
-  filterByTitleDesc: (payload: ItemsResponseType[]) =>
-    ({ type: 'FILTER_BY_TITLE_DESC', payload } as const),
-  filterByTitleAsc: (payload: ItemsResponseType[]) =>
-    ({ type: 'FILTER_BY_TITLE_ASC', payload } as const),
   filterByPriceDesc: (payload: ItemsResponseType[]) =>
     ({ type: 'FILTER_BY_PRICE_DESC', payload } as const),
   filterByPriceAsc: (payload: ItemsResponseType[]) =>
@@ -103,65 +96,6 @@ export const filterByPriceAsc = () => {
     );
 
     dispatch(actionsFilter.filterByPriceAsc(sortedItems));
-  };
-};
-
-export const filterByTitleDesc = () => {
-  return (dispatch: Dispatch, getState: () => StateType) => {
-    const {
-      reducer: { itemList },
-    } = getState();
-    const sortedItems = itemList.sort((a: ItemType, b: ItemType) => {
-      if (a.title > b.title) {
-        return -1;
-      }
-      if (a.title < b.title) {
-        return 1;
-      }
-      return 0;
-    });
-
-    dispatch(actionsFilter.filterByTitleDesc(sortedItems));
-  };
-};
-
-export const filterByTitleAsc = () => {
-  return (dispatch: Dispatch, getState: () => StateType) => {
-    const {
-      reducer: { itemList },
-    } = getState();
-    const sortedItems = itemList.sort((a: ItemType, b: ItemType) => {
-      if (a.title > b.title) {
-        return 1;
-      }
-      if (a.title < b.title) {
-        return -1;
-      }
-      return 0;
-    });
-
-    dispatch(actionsFilter.filterByTitleAsc(sortedItems));
-  };
-};
-
-export const filterByIDDesc = () => {
-  return (dispatch: Dispatch, getState: () => StateType) => {
-    const {
-      reducer: { itemList },
-    } = getState();
-    const sortedItems = itemList.sort((a: any, b: any) => b.id - a.id);
-
-    dispatch(actionsFilter.filterByIDDesc(sortedItems));
-  };
-};
-export const filterByIDAsc = () => {
-  return (dispatch: Dispatch, getState: () => StateType) => {
-    const {
-      reducer: { itemList },
-    } = getState();
-    const sortedItems = itemList.sort((a: any, b: any) => a.id - b.id);
-
-    dispatch(actionsFilter.filterByIDDesc(sortedItems));
   };
 };
 

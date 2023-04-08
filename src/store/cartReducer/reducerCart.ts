@@ -33,6 +33,16 @@ const reducerCart = (state = initialState, action: any) => {
         cart: newCart,
       };
 
+    case 'REMOVE_ITEM': {
+      const filterCart = state.cart.filter(
+        (item: CartFeaturesType) => item.id !== action.payload
+      );
+      return {
+        ...state,
+        cart: filterCart,
+      };
+    }
+
     case 'CLEAR_CART':
       return {
         ...state,

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { connect } from 'react-redux';
 
@@ -15,7 +14,13 @@ import logo from '../../img/logo-rozetka.svg';
 
 import './index.scss';
 
-function BurgerMenu({ closeMenu, cartlength }: BurgerMenuProps): JSX.Element {
+import actionsCart from '../../store/cartReducer/actionsCart';
+
+function BurgerMenu({
+  closeMenu,
+  cartlength,
+  openCart,
+}: BurgerMenuProps): JSX.Element {
   const [categories, setCategories] = useState(false);
 
   const onCategoriesClick = () => {
@@ -111,10 +116,12 @@ function BurgerMenu({ closeMenu, cartlength }: BurgerMenuProps): JSX.Element {
             </div>
           ) : null}
         </div>
-        <Link
-          to="/cart"
+        <div
           className="burger-menu__cart"
-          onClick={() => closeMenu()}
+          onClick={() => {
+            closeMenu();
+            openCart();
+          }}
         >
           <div className="cart">
             <div>
@@ -139,7 +146,7 @@ function BurgerMenu({ closeMenu, cartlength }: BurgerMenuProps): JSX.Element {
               <div className="cart__amount">{cartlength}</div>
             ) : null}
           </div>
-        </Link>
+        </div>
         <div className="burger-menu__apps">
           <p>Download our apps</p>
           <ul className="apps">
@@ -156,7 +163,7 @@ function BurgerMenu({ closeMenu, cartlength }: BurgerMenuProps): JSX.Element {
           </ul>
         </div>
       </div>
-      {/* socials-block */}
+
       <div className="burger-menu__socials">
         <p>You can find me in social networks</p>
         <ul className="socials">
@@ -200,6 +207,7 @@ function BurgerMenu({ closeMenu, cartlength }: BurgerMenuProps): JSX.Element {
 
 const mapDispatchToProps = {
   closeMenu: actions.closeMenu,
+  openCart: actionsCart.openCart,
 };
 
 export default connect(null, mapDispatchToProps)(BurgerMenu);
@@ -207,4 +215,5 @@ export default connect(null, mapDispatchToProps)(BurgerMenu);
 type BurgerMenuProps = {
   cartlength: number;
   closeMenu: () => void;
+  openCart: () => void;
 };

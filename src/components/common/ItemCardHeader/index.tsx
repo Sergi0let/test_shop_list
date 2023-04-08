@@ -96,10 +96,6 @@ const mapStateToProps = (state: StateType) => {
 };
 
 const mapDispathToProps = {
-  filterByIDDesc: action.filterByIDDesc,
-  filterByIDAsc: action.filterByIDAsc,
-  filterByTitleDesc: action.filterByTitleDesc,
-  filterByTitleAsc: action.filterByTitleAsc,
   filterByPriceDesc: action.filterByPriceDesc,
   filterByPriceAsc: action.filterByPriceAsc,
   filterByRatingDesc: action.filterByRatingDesc,
