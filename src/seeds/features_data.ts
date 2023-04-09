@@ -22,7 +22,5 @@ export const technologiesData = [
   'React-icons',
   'React-hook-form',
   'React-select',
-  'Formik',
-  'Yup',
   'SCSS',
 ];

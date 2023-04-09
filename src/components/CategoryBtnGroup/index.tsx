@@ -5,9 +5,9 @@ import {
   getAllCategories,
   getAllItems,
   getCategories,
-} from '../../store/items/actionsItems';
+} from '../../store/itemsReducer/actionsItems';
 import { StateType } from '../../entities/Items';
-import * as selector from '../../store/items/selectorsItems';
+import * as selector from '../../store/itemsReducer/selectorsItems';
 
 import './index.scss';
 

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import * as actionsRemove from '../../../store/items/actionsItems';
+import * as actionsRemove from '../../../store/itemsReducer/actionsItems';
 
 import './index.scss';
 

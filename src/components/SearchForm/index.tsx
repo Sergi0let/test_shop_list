@@ -5,8 +5,8 @@ import {
   actionsSearch,
   searchItems,
   setFilter,
-} from '../../store/items/actionsItems';
-import * as selector from '../../store/items/selectorsItems';
+} from '../../store/itemsReducer/actionsItems';
+import * as selector from '../../store/itemsReducer/selectorsItems';
 import './index.scss';
 
 function SearchForm(props: PropsType): JSX.Element {
@@ -111,18 +111,3 @@ type PropsType = {
   openModal: () => void;
   closeModal: () => void;
 };
-
-// eslint-disable-next-line no-lone-blocks
-{
-  /* <div className="form__btn">
-        {isModalOpen ? (
-          <button className="btn btnPrimary" onClick={closeModal}>
-            Close Add Item
-          </button>
-        ) : (
-          <button className="btn btnPrimary" onClick={openModal}>
-            Open Add Item
-          </button>
-        )}
-      </div> */
-}

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { connect } from 'react-redux';
 import { CartFeaturesType } from '../../entities/cart';
 import { StateType } from '../../entities/Items';

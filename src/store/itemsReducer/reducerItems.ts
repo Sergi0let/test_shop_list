@@ -15,7 +15,7 @@ const initialState = {
   cart: [] as ItemsResponseType[],
 };
 
-const reducer = (state = initialState, action: any) => {
+const reducerItems = (state = initialState, action: any) => {
   switch (action.type) {
     case 'REQUEST_DATA':
       return {
@@ -141,4 +141,4 @@ const reducer = (state = initialState, action: any) => {
   }
 };
 
-export default reducer;
+export default reducerItems;

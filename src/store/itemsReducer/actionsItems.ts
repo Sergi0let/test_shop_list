@@ -26,7 +26,7 @@ export const actionsFilter = {
 export const filterByStockAsc = () => {
   return (dispatch: Dispatch, getState: () => StateType) => {
     const {
-      reducer: { itemList },
+      reducerItems: { itemList },
     } = getState();
     const sortedItems = itemList.sort(
       (a: ItemType, b: ItemType) => a.stock - b.stock
@@ -38,7 +38,7 @@ export const filterByStockAsc = () => {
 export const filterByStockDesc = () => {
   return (dispatch: Dispatch, getState: () => StateType) => {
     const {
-      reducer: { itemList },
+      reducerItems: { itemList },
     } = getState();
     const sortedItems = itemList.sort(
       (a: ItemType, b: ItemType) => b.stock - a.stock
@@ -50,7 +50,7 @@ export const filterByStockDesc = () => {
 export const filterByRatingDesc = () => {
   return (dispatch: Dispatch, getState: () => StateType) => {
     const {
-      reducer: { itemList },
+      reducerItems: { itemList },
     } = getState();
     const sortedItems = itemList.sort(
       (a: ItemType, b: ItemType) => b.rating - a.rating
@@ -63,7 +63,7 @@ export const filterByRatingDesc = () => {
 export const filterByRatingAsc = () => {
   return (dispatch: Dispatch, getState: () => StateType) => {
     const {
-      reducer: { itemList },
+      reducerItems: { itemList },
     } = getState();
     const sortedItems = itemList.sort(
       (a: ItemType, b: ItemType) => a.rating - b.rating
@@ -76,7 +76,7 @@ export const filterByRatingAsc = () => {
 export const filterByPriceDesc = () => {
   return (dispatch: Dispatch, getState: () => StateType) => {
     const {
-      reducer: { itemList },
+      reducerItems: { itemList },
     } = getState();
     const sortedItems = itemList.sort(
       (a: ItemType, b: ItemType) => b.price - a.price
@@ -89,7 +89,7 @@ export const filterByPriceDesc = () => {
 export const filterByPriceAsc = () => {
   return (dispatch: Dispatch, getState: () => StateType) => {
     const {
-      reducer: { itemList },
+      reducerItems: { itemList },
     } = getState();
     const sortedItems = itemList.sort(
       (a: ItemType, b: ItemType) => a.price - b.price

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { StateType } from '../../../entities/Items';
-import * as action from '../../../store/items/actionsItems';
-import * as selector from '../../../store/items/selectorsItems';
+import * as action from '../../../store/itemsReducer/actionsItems';
+import * as selector from '../../../store/itemsReducer/selectorsItems';
 
 import './index.scss';
 

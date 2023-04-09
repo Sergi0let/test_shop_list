@@ -40,7 +40,8 @@ export type ItemsStateType = {
 };
 
 export type StateType = {
-  reducer: StateReducerType;
+  reducerItems: StateReducerType;
+
   reducerCart: CartStateType;
 };
 

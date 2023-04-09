@@ -8,7 +8,7 @@ import {
   getAllCategories,
   getAllItems,
   getMoreItems,
-} from '../../store/items/actionsItems';
+} from '../../store/itemsReducer/actionsItems';
 import actionsCart from '../../store/cartReducer/actionsCart';
 import ItemCardHeader from '../common/ItemCardHeader';
 import CategoryBtnGroup from '../CategoryBtnGroup';
@@ -17,7 +17,7 @@ import RattingRange from '../common/RattingRang';
 import RemoveFavorite from '../common/RemoveFavorite';
 import Spinner from '../common/Loading';
 import ImgCmpt from '../common/ImgCmpt';
-import * as selector from '../../store/items/selectorsItems';
+import * as selector from '../../store/itemsReducer/selectorsItems';
 import * as selectorsCart from '../../store/cartReducer/selectorsCart';
 
 import './index.scss';

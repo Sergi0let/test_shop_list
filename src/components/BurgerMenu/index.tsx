@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { actions } from '../../store/items/actionsItems';
+import { actions } from '../../store/itemsReducer/actionsItems';
 
 import CategoryBtnGroup from '../CategoryBtnGroup';
 import telegram from '../../img/telegram.png';

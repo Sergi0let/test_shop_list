@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { ItemsResponseType, StateType } from '../entities/Items';
 import { useParams } from 'react-router-dom';
-import { getItem } from '../store/items/actionsItems';
+import { getItem } from '../store/itemsReducer/actionsItems';
 import ItemPage from '../components/common/ItemPage';
 
-import * as selectors from '../store/items/selectorsItems';
+import * as selectors from '../store/itemsReducer/selectorsItems';
 import actionsCart from '../store/cartReducer/actionsCart';
 
 function Item({

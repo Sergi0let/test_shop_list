@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { cartLength } from '../../store/cartReducer/selectorsCart';
-import { isMenuOpenSelector } from '../../store/items/selectorsItems';
+import { isMenuOpenSelector } from '../../store/itemsReducer/selectorsItems';
 import BurgerMenu from '../BurgerMenu';
 import Lang from '../common/Lang';
 import CartModal from '../CartModal';
-import { actions } from '../../store/items/actionsItems';
+import { actions } from '../../store/itemsReducer/actionsItems';
 import actionsCart from '../../store/cartReducer/actionsCart';
 import { isOpenCart } from '../../store/cartReducer/selectorsCart';
 import SearchForm from '../SearchForm';
