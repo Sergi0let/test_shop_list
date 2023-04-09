@@ -11,6 +11,7 @@ function CartItem({
   plusItem,
   minusItem,
   removeItem,
+  description,
 }: PropsType) {
   const [showFeatures, setShowFeatures] = useState(false);
   const [removeBtn, setRemoveBtn] = useState(false);
@@ -105,12 +106,6 @@ function CartItem({
             </svg>
             Additional Services (...)
           </p>
-          {showFeatures && (
-            <ul className="item-cart__feature-list">
-              <li className="item-cart__feature-item">additional services 1</li>
-              <li className="item-cart__feature-item">additional services 2</li>
-            </ul>
-          )}
         </div>
         <div className="item-cart__controls">
           <button
@@ -129,6 +124,12 @@ function CartItem({
         </div>
         <div className="item-cart__price">{formatNumber(price)}$</div>
       </div>
+      {showFeatures && (
+        <ul className="item-cart__feature-list">
+          <li className="item-cart__feature-item">{description}</li>
+          <li className="item-cart__feature-item">additional services 2</li>
+        </ul>
+      )}
     </li>
   );
 }
@@ -141,6 +142,7 @@ type PropsType = {
   title: string;
   price: number;
   count: number;
+  description: string;
   features?: Array<string>;
   plusItem: (id: number) => void;
   minusItem: (id: number) => void;

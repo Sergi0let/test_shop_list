@@ -9,4 +9,5 @@ export type CartFeaturesType = {
   title: string;
   price: number;
   count?: number;
+  description: string;
 };

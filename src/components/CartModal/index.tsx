@@ -67,6 +67,7 @@ function CartModal({
                 plusItem={plusItem}
                 minusItem={minusItem}
                 removeItem={removeItem}
+                description={item.description}
               />
             ))}
         </ul>

@@ -74,8 +74,14 @@
   &__bottom {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding-left: 100px;
+    align-items: flex-start;
+    padding-left: 0px;
+    padding-top: 0.4rem;
+
+    @include to-phone {
+      padding-left: 100px;
+      padding-top: 0;
+    }
   }
 
   &__chevron {
@@ -93,12 +99,18 @@
     color: $primary-color;
     cursor: pointer;
     transition: color 0.3s ease 0s;
-    white-space: nowrap;
-    overflow: hidden;
 
     &:hover {
       color: $danger-color;
     }
+  }
+
+  &__feature-list {
+  }
+
+  &__feature-item {
+    font-size: 0.8rem;
+    padding-top: 0.5rem;
   }
 
   &__controls {
@@ -132,5 +144,6 @@
   &__price {
     font-size: 1.5rem;
     font-weight: 500;
+    white-space: nowrap;
   }
 }
