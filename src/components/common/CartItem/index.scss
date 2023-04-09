@@ -92,6 +92,9 @@
     font-size: 1rem;
     color: $primary-color;
     cursor: pointer;
+    transition: color 0.3s ease 0s;
+    white-space: nowrap;
+    overflow: hidden;
 
     &:hover {
       color: $danger-color;

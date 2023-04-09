@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { CartFeaturesType } from '../../entities/cart';
 import { StateType } from '../../entities/Items';
+import { formatNumber, showOrderMessage } from '../../helpers/helpers';
 import actionsCart from '../../store/cartReducer/actionsCart';
 import {
   cartItems,
@@ -21,6 +22,7 @@ function CartModal({
   plusItem,
   minusItem,
   removeItem,
+  clearCart,
 }: PropsType): JSX.Element {
   const isCartEmpty = itemsInCart.length <= 0;
 
@@ -76,8 +78,19 @@ function CartModal({
         </button>
         {!isCartEmpty && (
           <div className="actions-cart__resive">
-            <div className="actions-cart__amount">{totalPrice}$</div>
-            <button className="actions-cart__btn">To order</button>
+            <div className="actions-cart__amount">
+              {formatNumber(totalPrice)}$
+            </div>
+            <button
+              className="actions-cart__btn"
+              onClick={() => {
+                showOrderMessage(formatNumber(totalPrice));
+                closeCart();
+                clearCart();
+              }}
+            >
+              To order
+            </button>
           </div>
         )}
       </div>
@@ -100,7 +113,6 @@ type PropsType = {
 const mapStateToProps = (state: StateType) => {
   return {
     isOpenCart: isOpenCart(state),
-
     itemsInCart: cartItems(state),
     totalPrice: totalPrice(state),
     sortItems: cartSortItems(state),

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { formatNumber } from '../../../helpers/helpers';
 import './index.scss';
 
 function CartItem({
@@ -20,6 +21,7 @@ function CartItem({
 
   const mouseLeave = () => {
     setRemoveBtn(false);
+    console.log('mouseLeave', removeBtn);
   };
 
   const handleRemoveBtn = () => {
@@ -101,7 +103,7 @@ function CartItem({
                 d="M19.5 8.25l-7.5 7.5-7.5-7.5"
               />
             </svg>
-            Additional Services (6)
+            Additional Services (...)
           </p>
           {showFeatures && (
             <ul className="item-cart__feature-list">
@@ -125,12 +127,7 @@ function CartItem({
             +
           </button>
         </div>
-        <div className="item-cart__price">
-          {String(price).length > 3
-            ? price.toString().slice(0, 1) + ' ' + price.toString().slice(1)
-            : price}
-          $
-        </div>
+        <div className="item-cart__price">{formatNumber(price)}$</div>
       </div>
     </li>
   );
