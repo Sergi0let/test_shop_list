@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "https://sergi0let.github.io/test_shop_list/static/css/main.a5c419a3.css",
+    "main.css": "https://sergi0let.github.io/test_shop_list/static/css/main.5dc705c8.css",
     "main.js": "https://sergi0let.github.io/test_shop_list/static/js/main.9e892741.js",
     "static/media/app_store.png": "https://sergi0let.github.io/test_shop_list/static/media/app_store.38b910e4f20e3eca7a22.png",
     "static/media/whatsup.png": "https://sergi0let.github.io/test_shop_list/static/media/whatsup.1dd8ca2765f1f177ab22.png",
@@ -8,11 +8,11 @@
     "static/media/flag_ukr.svg": "https://sergi0let.github.io/test_shop_list/static/media/flag_ukr.1a7fe3dd7c60f9e455da343ca9579bdd.svg",
     "static/media/logo-rozetka-small.svg": "https://sergi0let.github.io/test_shop_list/static/media/logo-rozetka-small.93f0bfa82664214d0f70.svg",
     "index.html": "https://sergi0let.github.io/test_shop_list/index.html",
-    "main.a5c419a3.css.map": "https://sergi0let.github.io/test_shop_list/static/css/main.a5c419a3.css.map",
+    "main.5dc705c8.css.map": "https://sergi0let.github.io/test_shop_list/static/css/main.5dc705c8.css.map",
     "main.9e892741.js.map": "https://sergi0let.github.io/test_shop_list/static/js/main.9e892741.js.map"
   },
   "entrypoints": [
-    "static/css/main.a5c419a3.css",
+    "static/css/main.5dc705c8.css",
     "static/js/main.9e892741.js"
   ]
 }
